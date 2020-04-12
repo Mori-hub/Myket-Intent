@@ -27,6 +27,11 @@ public class Aboutme_Myket extends LinearLayout {
         alpha_package=BuildConfig.APPLICATION_ID;;
         TextView textView= findViewById(R.id.textView);
         String app_name = alpa_context.getApplicationInfo().loadLabel(alpa_context.getPackageManager()).toString();
+
+        ImageView imageView= findViewById(R.id.imageView);
+        int s= alpa_context.getApplicationInfo().icon ;
+        imageView.setImageResource(s);
+
         String versionName = BuildConfig.VERSION_NAME;
         textView.setText(app_name+" "+versionName);
     }
@@ -44,6 +49,7 @@ public class Aboutme_Myket extends LinearLayout {
     public void setHeaderImage(int s){
        View imageView= findViewById(R.id.view);
         imageView.setBackgroundResource(s);
+
     }
 
     public void setBodyImage(int s){
