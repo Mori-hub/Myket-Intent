@@ -1,11 +1,9 @@
 package com.src.start;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
@@ -13,13 +11,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
-
 
 public class Aboutme_Myket extends LinearLayout {
     String alpha_package;
     Context alpa_context;
+    @SuppressLint("SetTextI18n")
     public Aboutme_Myket(Context context) {
         super(context);
          initialize(context);

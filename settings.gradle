@@ -1,0 +1,3 @@
+rootProject.name='Terans'
+include ':app'
+include ':start'
