@@ -3,6 +3,8 @@ package com.src.start;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.util.AttributeSet;
 import android.view.View;
@@ -10,28 +12,45 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class Aboutme_Myket extends LinearLayout {
     String alpha_package;
     Context alpa_context;
+    String versionName;
     @SuppressLint("SetTextI18n")
     public Aboutme_Myket(Context context) {
         super(context);
          initialize(context);
         alpa_context=context;
-        alpha_package=BuildConfig.APPLICATION_ID;;
+        PackageManager manager = alpa_context.getPackageManager();
+        try {
+            PackageInfo info = manager.getPackageInfo(alpa_context.getPackageName(), PackageManager.GET_ACTIVITIES);
+            versionName=info.versionName;
+            alpha_package=info.packageName;
+//            Toast.makeText(alpa_context,
+//                    "PackageName = " + info.packageName + "\nVersionCode = "
+//                            + info.versionCode + "\nVersionName = "
+//                            + info.versionName + "\nPermissions = " + info.permissions, Toast.LENGTH_LONG).show();
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
         TextView textView= findViewById(R.id.textView);
         String app_name = alpa_context.getApplicationInfo().loadLabel(alpa_context.getPackageManager()).toString();
+
 
         ImageView imageView= findViewById(R.id.imageView);
         int s= alpa_context.getApplicationInfo().icon ;
         imageView.setImageResource(s);
 
-        String versionName = BuildConfig.VERSION_NAME;
+
+//        String versionName = BuildConfig.VERSION_NAME;
+
+        
         textView.setText(app_name+" "+versionName);
     }
-
 
     public Aboutme_Myket(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -39,7 +58,6 @@ public class Aboutme_Myket extends LinearLayout {
     }
     private void initialize(Context context) {
         inflate(context, R.layout.my_view, this);
-
     }
 
     public void setHeaderImage(int s){
@@ -179,7 +197,6 @@ public class Aboutme_Myket extends LinearLayout {
     public Intent onIntent(String url){
         return new Intent(Intent.ACTION_VIEW, Uri.parse(url));
     }
-
 
 
 }
