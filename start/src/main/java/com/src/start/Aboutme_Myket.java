@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 public class Aboutme_Myket extends LinearLayout {
@@ -29,10 +28,7 @@ public class Aboutme_Myket extends LinearLayout {
             PackageInfo info = manager.getPackageInfo(alpa_context.getPackageName(), PackageManager.GET_ACTIVITIES);
             versionName=info.versionName;
             alpha_package=info.packageName;
-//            Toast.makeText(alpa_context,
-//                    "PackageName = " + info.packageName + "\nVersionCode = "
-//                            + info.versionCode + "\nVersionName = "
-//                            + info.versionName + "\nPermissions = " + info.permissions, Toast.LENGTH_LONG).show();
+
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
@@ -45,8 +41,6 @@ public class Aboutme_Myket extends LinearLayout {
         int s= alpa_context.getApplicationInfo().icon ;
         imageView.setImageResource(s);
 
-
-//        String versionName = BuildConfig.VERSION_NAME;
 
         
         textView.setText(app_name+" "+versionName);
