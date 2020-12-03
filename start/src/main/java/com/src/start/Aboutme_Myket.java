@@ -1,6 +1,5 @@
 package com.src.start;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -8,7 +7,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -18,7 +17,6 @@ public class Aboutme_Myket extends LinearLayout {
     String alpha_package;
     Context alpa_context;
     String versionName;
-    @SuppressLint("SetTextI18n")
     public Aboutme_Myket(Context context) {
         super(context);
          initialize(context);
@@ -42,8 +40,8 @@ public class Aboutme_Myket extends LinearLayout {
         imageView.setImageResource(s);
 
 
-        
-        textView.setText(app_name+" "+versionName);
+        app_name=app_name+" "+versionName;
+        textView.setText(app_name);
     }
 
     public Aboutme_Myket(Context context, AttributeSet attrs) {
@@ -96,10 +94,10 @@ public class Aboutme_Myket extends LinearLayout {
 
 
     public void setMyketActive(){
-        Button btnDown= findViewById(R.id.btnDown);
-        Button btnShare= findViewById(R.id.btnShare);
-        Button btnCom= findViewById(R.id.btnCom);
-        Button btnHelp= findViewById(R.id.btnHelp);
+        ImageButton btnDown= findViewById(R.id.btnDown);
+        ImageButton btnShare= findViewById(R.id.btnShare);
+        ImageButton btnCom= findViewById(R.id.btnCom);
+        ImageButton btnHelp= findViewById(R.id.btnHelp);
 
         btnDown.setOnClickListener(new OnClickListener() {
             @Override
@@ -140,7 +138,7 @@ public class Aboutme_Myket extends LinearLayout {
     }
 
     public void addGithub(final String github){
-        Button btn= findViewById(R.id.btnGithub);
+        ImageButton btn= findViewById(R.id.btnGithub);
 
         btn.setOnClickListener(new OnClickListener() {
             @Override
@@ -151,7 +149,7 @@ public class Aboutme_Myket extends LinearLayout {
         });
     }
     public void addEmail(final String email){
-        Button btn= findViewById(R.id.btnEmail);
+        ImageButton btn= findViewById(R.id.btnEmail);
 
         btn.setOnClickListener(new OnClickListener() {
             @Override
@@ -165,7 +163,7 @@ public class Aboutme_Myket extends LinearLayout {
         });
     }
     public void addInstagram(final String id){
-        Button btn= findViewById(R.id.btnInsta);
+        ImageButton btn= findViewById(R.id.btnInsta);
 
         btn.setOnClickListener(new OnClickListener() {
             @Override
@@ -177,7 +175,7 @@ public class Aboutme_Myket extends LinearLayout {
     }
     public void addWhatsapp(final String phoneN){
 
-        Button btn= findViewById(R.id.btnWat);
+        ImageButton btn= findViewById(R.id.btnWat);
 
         btn.setOnClickListener(new OnClickListener() {
             @Override
@@ -187,10 +185,10 @@ public class Aboutme_Myket extends LinearLayout {
             }
         });
     }
-
+/*
     public Intent onIntent(String url){
         return new Intent(Intent.ACTION_VIEW, Uri.parse(url));
     }
 
-
+*/
 }

@@ -5,6 +5,7 @@
     android:id="@+id/body"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:ignore="ContentDescription"
     android:background="#C2185B">
 
     <View
@@ -21,7 +22,8 @@
         android:layout_height="70dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginBottom="8dp"
+         />
 
 
     <ScrollView
@@ -131,7 +133,7 @@
                 android:layout_weight="1"
                 android:gravity="bottom|center">
 
-                <Button
+                <ImageButton
                     android:id="@+id/btnGithub"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
@@ -139,7 +141,7 @@
                     android:layout_marginRight="5dp"
                     android:background="@drawable/ic_github" />
 
-                <Button
+                <ImageButton
                     android:id="@+id/btnEmail"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
@@ -147,7 +149,7 @@
                     android:layout_marginRight="5dp"
                     android:background="@drawable/ic_message" />
 
-                <Button
+                <ImageButton
                     android:id="@+id/btnInsta"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
@@ -155,7 +157,7 @@
                     android:layout_marginRight="5dp"
                     android:background="@drawable/ic_instagram" />
 
-                <Button
+                <ImageButton
                     android:id="@+id/btnWat"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
@@ -190,7 +192,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center">
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/btnDown"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
@@ -199,7 +201,7 @@
                         android:background="@drawable/ic_download"
                         android:gravity="center" />
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/btnShare"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
@@ -208,7 +210,7 @@
                         android:background="@drawable/ic_share"
                         android:gravity="center" />
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/btnCom"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
@@ -217,7 +219,7 @@
                         android:background="@drawable/ic_good"
                         android:gravity="center" />
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/btnHelp"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
@@ -242,7 +244,7 @@
                         android:layout_marginStart="4dp"
                         android:layout_marginTop="2dp"
                         android:gravity="center"
-                        android:text="دانلود مستقیم" />
+                        android:text="@string/download" />
 
                     <TextView
                         android:id="@+id/textView8"
@@ -252,7 +254,7 @@
                         android:layout_marginStart="4dp"
                         android:layout_marginTop="2dp"
                         android:gravity="center"
-                        android:text="اشتراک " />
+                        android:text="@string/share" />
 
                     <TextView
                         android:id="@+id/textView9"
@@ -262,7 +264,7 @@
                         android:layout_marginStart="4dp"
                         android:layout_marginTop="2dp"
                         android:gravity="center"
-                        android:text="نظرات" />
+                        android:text="@string/commend" />
 
                     <TextView
                         android:id="@+id/textView10"
@@ -272,7 +274,7 @@
                         android:layout_marginStart="4dp"
                         android:layout_marginTop="2dp"
                         android:gravity="center"
-                        android:text="راهنما" />
+                        android:text="@string/help" />
                 </TableRow>
 
             </TableLayout>

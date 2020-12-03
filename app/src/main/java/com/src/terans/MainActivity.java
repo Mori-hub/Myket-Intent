@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
         v.addGithub("Mori-Hub"); // Developer's Github account
         v.addInstagram("b72243"); // Developer's Instagram account id
         v.addWhatsapp("989000004"); // Developer's Whatsapp
-
         setContentView(v); // Don't forget set it !
 
     }

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="download">دانلود مستقیم</string>
+    <string name="share">اشتراک</string>
+    <string name="commend">نظرات</string>
+    <string name="help">راهنما</string>
+</resources>
