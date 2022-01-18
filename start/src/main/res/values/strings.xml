@@ -4,4 +4,13 @@
     <string name="share">اشتراک</string>
     <string name="commend">نظرات</string>
     <string name="help">راهنما</string>
+    <string name="email">email</string>
+    <string name="instagram">instagram</string>
+    <string name="whatsup">whatsup</string>
+    <string name="help1">help</string>
+    <string name="rate">rate</string>
+    <string name="share1">share</string>
+    <string name="download1">download</string>
+    <string name="github">github</string>
+    <string name="google">google</string>
 </resources>

@@ -26,11 +26,12 @@ public class MainActivity extends AppCompatActivity {
         v.setProfileDescription(R.string.prof_desc);
         v.setProfileImage(R.drawable.profile);// It can get (int) , id.mipmap/drawable/color , png,xml
 
-        v.setMyketActive();// Myket links will be active by call this method. Don't need more!
+        v.setMyketActive(true);// Myket links will be active by call this method. Don't need more!
         v.addEmail("e@t.com"); // Developer's email
         v.addGithub("Mori-Hub"); // Developer's Github account
         v.addInstagram("b72243"); // Developer's Instagram account id
         v.addWhatsapp("989000004"); // Developer's Whatsapp
+        v.addGoogle();// Add google play store link
         setContentView(v); // Don't forget set it !
 
     }

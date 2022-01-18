@@ -6,6 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/body"
     tools:ignore="ContentDescription"
+    android:tag="land"
     android:background="#C2185B">
 
 
@@ -111,7 +112,9 @@
                         android:layout_height="50dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:background="@drawable/ic_github" />
+                        android:background="@drawable/ic_github"
+                        android:contentDescription="@string/github"
+                        android:visibility="gone" />
 
                     <ImageButton
                         android:id="@+id/btnEmail"
@@ -119,7 +122,9 @@
                         android:layout_height="50dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:background="@drawable/ic_message" />
+                        android:background="@drawable/ic_message"
+                        android:contentDescription="@string/email"
+                        android:visibility="gone" />
 
                     <ImageButton
                         android:id="@+id/btnInsta"
@@ -127,7 +132,9 @@
                         android:layout_height="50dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:background="@drawable/ic_instagram" />
+                        android:background="@drawable/ic_instagram"
+                        android:contentDescription="@string/instagram"
+                        android:visibility="gone" />
 
                     <ImageButton
                         android:id="@+id/btnWat"
@@ -135,7 +142,19 @@
                         android:layout_height="50dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:background="@drawable/ic_whatsapp" />
+                        android:background="@drawable/ic_whatsapp"
+                        android:contentDescription="@string/whatsup"
+                        android:visibility="gone" />
+
+                    <ImageButton
+                        android:id="@+id/btnGoogle"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/ic_google"
+                        android:contentDescription="@string/google"
+                        android:visibility="gone" />
                 </TableRow>
 
             </LinearLayout>
@@ -154,6 +173,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_l_2"
                 android:backgroundTint="@android:color/background_light"
+                android:backgroundTintMode="add"
                 android:orientation="vertical">
 
                 <TextView
@@ -192,13 +212,14 @@
                     android:background="@android:color/background_dark" />
 
                 <ImageView
-                    android:id="@+id/imageView3"
+                    android:id="@+id/myket_icon"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="3dp"
                     app:srcCompat="@drawable/myket_128_b" />
 
                 <TableLayout
+                    android:id="@+id/myket_table"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="4dp"
@@ -217,7 +238,9 @@
                             android:layout_height="50dp"
                             android:layout_gravity="center"
                             android:layout_marginStart="4dp"
-                            android:background="@drawable/ic_download" />
+                            android:background="@drawable/ic_download"
+                            android:contentDescription="@string/download1"
+                            tools:ignore="ImageContrastCheck" />
 
                         <ImageButton
                             android:id="@+id/btnShare"
@@ -226,6 +249,7 @@
                             android:layout_gravity="center"
                             android:layout_marginStart="4dp"
                             android:background="@drawable/ic_share"
+                            android:contentDescription="@string/share1"
                             android:gravity="center" />
 
                         <ImageButton
@@ -235,6 +259,7 @@
                             android:layout_gravity="center"
                             android:layout_marginStart="4dp"
                             android:background="@drawable/ic_good"
+                            android:contentDescription="@string/rate"
                             android:gravity="center" />
 
                         <ImageButton
@@ -244,6 +269,7 @@
                             android:layout_gravity="center"
                             android:layout_marginStart="4dp"
                             android:background="@drawable/ic_customer_service"
+                            android:contentDescription="@string/help1"
                             android:gravity="center" />
                     </TableRow>
 
