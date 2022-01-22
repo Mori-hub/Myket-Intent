@@ -31,3 +31,16 @@ dependencies {
    // implementation 'org.jetbrains:annotations-java5:15.0'
 
 }
+afterEvaluate {
+    publishing {
+        publications {
+// Creates a Maven publication called "release".
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.github.Mori-hub'
+                artifactId = 'Myket-Intent'
+                version = '0.1.15'
+            }
+        }
+    }
+}
