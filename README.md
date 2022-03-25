@@ -57,6 +57,9 @@ Install my-project with https://jitpack.io/
 
 
 ## Screenshots
+| col 1      | col 2      |
+|------------|-------------|
+| <img src="https://user-images.githubusercontent.com/53067774/160182888-52b106ba-7003-4886-a0ee-25463c2dd15d.jpg" width="250"> | <img src="https://user-images.githubusercontent.com/53067774/160182899-510a528e-4a29-4a42-a752-69e8ea68a745.jpg" width="250"> |
 
 
 
