@@ -1,0 +1,969 @@
+Index: app/src/main/java/com/src/terans/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.src.terans;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.os.Bundle;\r\n\r\nimport com.src.start.Aboutme_Myket;\r\n\r\npublic class MainActivity extends AppCompatActivity {\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_main);\r\n\r\n        Aboutme_Myket v = new Aboutme_Myket(this);\r\n        v.setHeaderImage(R.drawable.ba1); // It can get (int) , id.mipmap/drawable/color , png,xml\r\n        v.setBodyImage(R.drawable.ba1);// It can get (int) , id.mipmap/drawable/color , png,xml\r\n\r\n        v.setAppIcon(R.mipmap.ic_launcher_round);\r\n        v.setAppCompany(\"خلاقیت کاری و کسب درآمد\"); //It can get String\r\n        v.setAppDescription(R.string.app_desc);\r\n\r\n        v.setProfileName(\"Morteza\"); //It can get String\r\n        v.setProfileJob(\"App Developer\");//It can get String\r\n        v.setProfileDescription(R.string.prof_desc);\r\n        v.setProfileImage(R.drawable.profile);// It can get (int) , id.mipmap/drawable/color , png,xml\r\n\r\n        v.setMyketActive(true);// Myket links will be active by call this method. Don't need more!\r\n        v.addEmail(\"e@t.com\"); // Developer's email\r\n        v.addGithub(\"Mori-Hub\"); // Developer's Github account\r\n        v.addInstagram(\"b72243\"); // Developer's Instagram account id\r\n        v.addWhatsapp(\"989000004\"); // Developer's Whatsapp\r\n        v.addGoogle();// Add google play store link\r\n        setContentView(v); // Don't forget set it !\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/src/terans/MainActivity.java b/app/src/main/java/com/src/terans/MainActivity.java
+--- a/app/src/main/java/com/src/terans/MainActivity.java	(revision 073c19cc5dbef473d374dc791a2006409a2c15f7)
++++ b/app/src/main/java/com/src/terans/MainActivity.java	(date 1656276832625)
+@@ -26,12 +26,16 @@
+         v.setProfileDescription(R.string.prof_desc);
+         v.setProfileImage(R.drawable.profile);// It can get (int) , id.mipmap/drawable/color , png,xml
+ 
+-        v.setMyketActive(true);// Myket links will be active by call this method. Don't need more!
++
+         v.addEmail("e@t.com"); // Developer's email
+         v.addGithub("Mori-Hub"); // Developer's Github account
+         v.addInstagram("b72243"); // Developer's Instagram account id
+         v.addWhatsapp("989000004"); // Developer's Whatsapp
+-        v.addGoogle();// Add google play store link
++        v.addGoogle(true);// Add google play store link
++       // v.setMyketActive(true);// Myket links will be active by call this method. Don't need more!
++       // v.addGoogleRateApp(this); // Rate Directly Google play Store
++       // v.addCafe(true);// CafeBazar links will be active by call this method. Don't need more!
++        v.addStores(false,false,true); // Select just one by True
+         setContentView(v); // Don't forget set it !
+ 
+     }
+Index: start/src/main/java/com/src/start/Aboutme_Myket.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.src.start;\r\n\r\nimport android.content.Context;\r\nimport android.content.Intent;\r\nimport android.content.pm.PackageInfo;\r\nimport android.content.pm.PackageManager;\r\nimport android.net.Uri;\r\nimport android.util.AttributeSet;\r\nimport android.view.View;\r\nimport android.widget.ImageButton;\r\nimport android.widget.ImageView;\r\nimport android.widget.LinearLayout;\r\nimport android.widget.TextView;\r\n\r\n\r\npublic class Aboutme_Myket extends LinearLayout {\r\n    String alpha_package;\r\n    Context alpa_context;\r\n    String versionName;\r\n\r\n    public Aboutme_Myket(Context context) {\r\n        super(context);\r\n        initialize(context);\r\n        alpa_context = context;\r\n        PackageManager manager = alpa_context.getPackageManager();\r\n        try {\r\n            PackageInfo info = manager.getPackageInfo(alpa_context.getPackageName(), PackageManager.GET_ACTIVITIES);\r\n            versionName = info.versionName;\r\n            alpha_package = info.packageName;\r\n\r\n        } catch (PackageManager.NameNotFoundException e) {\r\n            e.printStackTrace();\r\n        }\r\n\r\n        TextView textView = findViewById(R.id.textView);\r\n        String app_name = alpa_context.getApplicationInfo().loadLabel(alpa_context.getPackageManager()).toString();\r\n\r\n\r\n        ImageView imageView = findViewById(R.id.imageView);\r\n        int s = alpa_context.getApplicationInfo().icon;\r\n        imageView.setImageResource(s);\r\n\r\n\r\n        app_name = app_name + \" \" + versionName;\r\n        textView.setText(app_name);\r\n    }\r\n\r\n    public Aboutme_Myket(Context context, AttributeSet attrs) {\r\n        super(context, attrs);\r\n        initialize(context);\r\n    }\r\n\r\n    private void initialize(Context context) {\r\n        inflate(context, R.layout.my_view, this);\r\n    }\r\n\r\n    public void setHeaderImage(int s) {\r\n        View imageView = findViewById(R.id.view);\r\n        imageView.setBackgroundResource(s);\r\n\r\n    }\r\n\r\n    public void setBodyImage(int s) {\r\n        View imageView = findViewById(R.id.body);\r\n        imageView.setBackgroundResource(s);\r\n    }\r\n\r\n    public void setAppIcon(int s) {\r\n        ImageView imageView = findViewById(R.id.imageView);\r\n        imageView.setImageResource(s);\r\n    }\r\n\r\n    public void setAppCompany(String s) {\r\n        TextView textView = findViewById(R.id.textView2);\r\n        textView.setText(s);\r\n    }\r\n\r\n    public void setAppDescription(int s) {\r\n        TextView textView = findViewById(R.id.textView3);\r\n        textView.setText(s);\r\n    }\r\n\r\n    public void setProfileImage(int s) {\r\n        ImageView imageView2 = findViewById(R.id.imageView2);\r\n        imageView2.setImageResource(s);\r\n    }\r\n\r\n    public void setProfileName(String s) {\r\n        TextView textView = findViewById(R.id.textView4);\r\n        textView.setText(s);\r\n    }\r\n\r\n    public void setProfileJob(String s) {\r\n        TextView textView = findViewById(R.id.textView5);\r\n        textView.setText(s);\r\n    }\r\n\r\n    public void setProfileDescription(int s) {\r\n        TextView textView = findViewById(R.id.textView6);\r\n        textView.setText(s);\r\n    }\r\n\r\n\r\n    public void setMyketActive(boolean active) {\r\n        if (!active) {\r\n            if (getTag() == \"land\")\r\n                findViewById(R.id.s2).setVisibility(GONE);\r\n            else {\r\n                findViewById(R.id.divider2).setVisibility(GONE);\r\n                findViewById(R.id.myket_icon).setVisibility(GONE);\r\n                findViewById(R.id.myket_table).setVisibility(GONE);\r\n            }\r\n        }\r\n\r\n\r\n        ImageButton btnDown = findViewById(R.id.btnDown);\r\n        ImageButton btnShare = findViewById(R.id.btnShare);\r\n        ImageButton btnCom = findViewById(R.id.btnCom);\r\n        ImageButton btnHelp = findViewById(R.id.btnHelp);\r\n\r\n        btnDown.setOnClickListener(v -> {\r\n            String url = \"myket://download/\" + alpha_package;\r\n            alpa_context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));\r\n        });\r\n        btnShare.setOnClickListener(v -> {\r\n            String url = \"https://myket.ir/app/\" + alpha_package;\r\n            Intent share = new Intent(Intent.ACTION_SEND);\r\n            share.setType(\"text/plain\");\r\n            share.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);\r\n            share.putExtra(Intent.EXTRA_SUBJECT, \"دوستان دانلود کنید\");\r\n            share.putExtra(Intent.EXTRA_TEXT, url);\r\n\r\n            alpa_context.startActivity(Intent.createChooser(share, \"Share link!\"));\r\n\r\n        });\r\n        btnCom.setOnClickListener(v -> {\r\n            String url = \"myket://comment?id=\" + alpha_package;\r\n            alpa_context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));\r\n        });\r\n        btnHelp.setOnClickListener(v -> {\r\n            String url = \"myket://details?id=\" + alpha_package;\r\n            alpa_context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));\r\n        });\r\n\r\n    }\r\n\r\n    public void addGithub(final String github) {\r\n        ImageButton btn = findViewById(R.id.btnGithub);\r\n        btn.setVisibility(VISIBLE);\r\n        btn.setOnClickListener(v -> {\r\n            String url = \"https://github.com/\" + github;\r\n            alpa_context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));\r\n        });\r\n    }\r\n\r\n    public void addEmail(final String email) {\r\n        ImageButton btn = findViewById(R.id.btnEmail);\r\n        btn.setVisibility(VISIBLE);\r\n        btn.setOnClickListener(v -> {\r\n            Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(\r\n                    \"mailto\", email, null));\r\n            emailIntent.putExtra(Intent.EXTRA_SUBJECT, \"Subject\");\r\n            emailIntent.putExtra(Intent.EXTRA_TEXT, \"Body\");\r\n            alpa_context.startActivity(Intent.createChooser(emailIntent, \"Send email...\"));\r\n        });\r\n    }\r\n\r\n    public void addInstagram(final String id) {\r\n        ImageButton btn = findViewById(R.id.btnInsta);\r\n        btn.setVisibility(VISIBLE);\r\n        btn.setOnClickListener(v -> {\r\n            String url = \"https://www.instagram.com/\" + id;\r\n            alpa_context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));\r\n        });\r\n    }\r\n\r\n    public void addGoogle() {\r\n        ImageButton btn = findViewById(R.id.btnGoogle);\r\n        btn.setVisibility(VISIBLE);\r\n        btn.setOnClickListener(v -> {\r\n            String url = \"https://play.google.com/store/apps/details?id=\" + alpha_package;\r\n            alpa_context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));\r\n        });\r\n    }\r\n\r\n    public void addWhatsapp(final String phoneN) {\r\n\r\n        ImageButton btn = findViewById(R.id.btnWat);\r\n        btn.setVisibility(VISIBLE);\r\n        btn.setOnClickListener(v -> {\r\n            String url = \"https://wa.me/\" + phoneN;\r\n            alpa_context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));\r\n        });\r\n    }\r\n/*\r\n    public Intent onIntent(String url){\r\n        return new Intent(Intent.ACTION_VIEW, Uri.parse(url));\r\n    }\r\n\r\n*/\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/start/src/main/java/com/src/start/Aboutme_Myket.java b/start/src/main/java/com/src/start/Aboutme_Myket.java
+--- a/start/src/main/java/com/src/start/Aboutme_Myket.java	(revision 073c19cc5dbef473d374dc791a2006409a2c15f7)
++++ b/start/src/main/java/com/src/start/Aboutme_Myket.java	(date 1656276737965)
+@@ -1,22 +1,33 @@
+ package com.src.start;
+ 
++import android.app.Activity;
++import android.content.ActivityNotFoundException;
+ import android.content.Context;
+ import android.content.Intent;
+ import android.content.pm.PackageInfo;
+ import android.content.pm.PackageManager;
+ import android.net.Uri;
+ import android.util.AttributeSet;
++import android.util.Log;
+ import android.view.View;
++import android.view.animation.AnimationUtils;
+ import android.widget.ImageButton;
+ import android.widget.ImageView;
+ import android.widget.LinearLayout;
+ import android.widget.TextView;
++import android.widget.Toast;
++
++import com.google.android.play.core.review.ReviewInfo;
++import com.google.android.play.core.review.ReviewManager;
++import com.google.android.play.core.review.ReviewManagerFactory;
+ 
+ 
+ public class Aboutme_Myket extends LinearLayout {
+     String alpha_package;
+     Context alpa_context;
+     String versionName;
++    String urlbtnDown = "https://", urlbtnShare = "https://", urlbtnHelp = "https://", urlbtnCom = "https://";
++
+ 
+     public Aboutme_Myket(Context context) {
+         super(context);
+@@ -43,6 +54,7 @@
+ 
+         app_name = app_name + " " + versionName;
+         textView.setText(app_name);
++
+     }
+ 
+     public Aboutme_Myket(Context context, AttributeSet attrs) {
+@@ -52,6 +64,57 @@
+ 
+     private void initialize(Context context) {
+         inflate(context, R.layout.my_view, this);
++
++        ImageButton btnDown = findViewById(R.id.btnDown);
++        ImageButton btnShare = findViewById(R.id.btnShare);
++        ImageButton btnCom = findViewById(R.id.btnCom);
++        ImageButton btnHelp = findViewById(R.id.btnHelp);
++
++        btnDown.setOnClickListener(v -> {
++            anim(btnDown);
++
++//            String urlbtnDown = "myket://download/" + alpha_package;
++            try {
++                alpa_context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(urlbtnDown)));
++            } catch (ActivityNotFoundException e) {
++                Log.e("TAG", "setMyketActive: " + e.getLocalizedMessage());
++            }
++        });
++        btnShare.setOnClickListener(v -> {
++            anim(btnShare);
++
++            // String urlbtnShare = "https://myket.ir/app/" + alpha_package;
++            Intent share = new Intent(Intent.ACTION_SEND);
++            share.setType("text/plain");
++            share.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
++            share.putExtra(Intent.EXTRA_SUBJECT, "دوستان دانلود کنید");
++            share.putExtra(Intent.EXTRA_TEXT, urlbtnShare);
++
++            alpa_context.startActivity(Intent.createChooser(share, "Share link!"));
++
++        });
++        btnCom.setOnClickListener(v -> {
++            anim(btnCom);
++
++            // String urlbtnCom = "myket://comment?id=" + alpha_package;
++            try {
++                alpa_context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(urlbtnCom)));
++            } catch (ActivityNotFoundException e) {
++                e.printStackTrace();
++            }
++        });
++        btnHelp.setOnClickListener(v -> {
++            anim(btnHelp);
++
++            // String urlbtnHelp = "myket://details?id=" + alpha_package;
++            try {
++                alpa_context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(urlbtnHelp)));
++
++            } catch (ActivityNotFoundException e) {
++                e.printStackTrace();
++            }
++
++        });
+     }
+ 
+     public void setHeaderImage(int s) {
+@@ -109,38 +172,17 @@
+                 findViewById(R.id.divider2).setVisibility(GONE);
+                 findViewById(R.id.myket_icon).setVisibility(GONE);
+                 findViewById(R.id.myket_table).setVisibility(GONE);
+-            }
+-        }
+-
+ 
+-        ImageButton btnDown = findViewById(R.id.btnDown);
+-        ImageButton btnShare = findViewById(R.id.btnShare);
+-        ImageButton btnCom = findViewById(R.id.btnCom);
+-        ImageButton btnHelp = findViewById(R.id.btnHelp);
++            }
+ 
+-        btnDown.setOnClickListener(v -> {
+-            String url = "myket://download/" + alpha_package;
+-            alpa_context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+-        });
+-        btnShare.setOnClickListener(v -> {
+-            String url = "https://myket.ir/app/" + alpha_package;
+-            Intent share = new Intent(Intent.ACTION_SEND);
+-            share.setType("text/plain");
+-            share.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+-            share.putExtra(Intent.EXTRA_SUBJECT, "دوستان دانلود کنید");
+-            share.putExtra(Intent.EXTRA_TEXT, url);
++        }
++        ImageView logo = findViewById(R.id.myket_icon);
++        logo.setImageResource(R.drawable.myket_128_b);
++        urlbtnDown = "myket://download/" + alpha_package;
++        urlbtnShare = "https://myket.ir/app/" + alpha_package;
++        urlbtnHelp = "myket://details?id=" + alpha_package;
++        urlbtnCom = "myket://comment?id=" + alpha_package;
+ 
+-            alpa_context.startActivity(Intent.createChooser(share, "Share link!"));
+-
+-        });
+-        btnCom.setOnClickListener(v -> {
+-            String url = "myket://comment?id=" + alpha_package;
+-            alpa_context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+-        });
+-        btnHelp.setOnClickListener(v -> {
+-            String url = "myket://details?id=" + alpha_package;
+-            alpa_context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+-        });
+ 
+     }
+ 
+@@ -148,6 +190,8 @@
+         ImageButton btn = findViewById(R.id.btnGithub);
+         btn.setVisibility(VISIBLE);
+         btn.setOnClickListener(v -> {
++            anim(btn);
++
+             String url = "https://github.com/" + github;
+             alpa_context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+         });
+@@ -157,6 +201,8 @@
+         ImageButton btn = findViewById(R.id.btnEmail);
+         btn.setVisibility(VISIBLE);
+         btn.setOnClickListener(v -> {
++            anim(btn);
++
+             Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                     "mailto", email, null));
+             emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject");
+@@ -169,17 +215,28 @@
+         ImageButton btn = findViewById(R.id.btnInsta);
+         btn.setVisibility(VISIBLE);
+         btn.setOnClickListener(v -> {
++            anim(btn);
++
+             String url = "https://www.instagram.com/" + id;
+             alpa_context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+         });
+     }
+ 
+-    public void addGoogle() {
++    public void addGoogle(boolean active) {
+         ImageButton btn = findViewById(R.id.btnGoogle);
+-        btn.setVisibility(VISIBLE);
++        if (active)
++            btn.setVisibility(VISIBLE);
+         btn.setOnClickListener(v -> {
++            anim(btn);
++
+             String url = "https://play.google.com/store/apps/details?id=" + alpha_package;
+-            alpa_context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
++            try {
++                alpa_context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
++
++            } catch (ActivityNotFoundException e) {
++                e.printStackTrace();
++            }
++
+         });
+     }
+ 
+@@ -188,10 +245,88 @@
+         ImageButton btn = findViewById(R.id.btnWat);
+         btn.setVisibility(VISIBLE);
+         btn.setOnClickListener(v -> {
++            anim(btn);
++
+             String url = "https://wa.me/" + phoneN;
+             alpa_context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+         });
+     }
++
++    public void addGoogleRateApp(Context mContext) {
++        ImageButton btn = findViewById(R.id.btnGRate);
++        btn.setVisibility(VISIBLE);
++        btn.setOnClickListener(v -> {
++            anim(btn);
++
++            try {
++                ReviewManager manager = ReviewManagerFactory.create(mContext);
++                manager.requestReviewFlow().addOnCompleteListener(task -> {
++                    if (task.isSuccessful()) {
++                        ReviewInfo reviewInfo = task.getResult();
++                        manager.launchReviewFlow((Activity) mContext, reviewInfo).addOnFailureListener(e -> Toast.makeText(mContext, "Rating Failed", Toast.LENGTH_SHORT).show()).addOnCompleteListener(task1 -> Toast.makeText(mContext, "Review Completed, Thank You!", Toast.LENGTH_SHORT).show());
++                    }
++
++                }).addOnFailureListener(e -> Toast.makeText(mContext, "In-App Request Failed", Toast.LENGTH_SHORT).show());
++            } catch (ActivityNotFoundException e) {
++                e.printStackTrace();
++            }
++        });
++    }
++
++    private void anim(ImageButton btn) {
++        btn.startAnimation(
++                AnimationUtils.loadAnimation(
++                        alpa_context,
++                        R.anim.scale_short
++                ));
++
++    }
++
++    public void addCafe(boolean active) {
++        ImageView logo = findViewById(R.id.myket_icon);
++        if (active) {
++            logo.setImageResource(R.drawable.cafe);
++            findViewById(R.id.divider2).setVisibility(VISIBLE);
++            findViewById(R.id.myket_icon).setVisibility(VISIBLE);
++            findViewById(R.id.myket_table).setVisibility(VISIBLE);
++
++            urlbtnDown = "bazaar://download/" + alpha_package;
++            urlbtnShare = "https://cafebazaar.ir/app/" + alpha_package;
++            urlbtnHelp = "bazaar://details?id=" + alpha_package;
++            urlbtnCom = "bazaar://comment?id=" + alpha_package;
++        }
++    }
++
++    public void addStores(boolean googlePlay, boolean cafeBazar, boolean mayKet) {
++        ImageView logo = findViewById(R.id.myket_icon);
++
++        if (googlePlay) {
++            findViewById(R.id.divider2).setVisibility(GONE);
++            findViewById(R.id.myket_icon).setVisibility(GONE);
++            findViewById(R.id.myket_table).setVisibility(GONE);
++            addGoogleRateApp(alpa_context);
++            addGoogle(true);
++        }
++
++
++        if (cafeBazar) {
++            logo.setImageResource(R.drawable.cafe);
++
++            addGoogle(false);
++            setMyketActive(false);
++            addCafe(true);
++        }
++        if (mayKet) {
++            logo.setImageResource(R.drawable.myket_128_b);
++
++            addCafe(false);
++            addGoogle(false);
++            setMyketActive(true);
++        }
++
++
++    }
++
+ /*
+     public Intent onIntent(String url){
+         return new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>apply plugin: 'com.android.application'\r\n//apply plugin: 'android-maven'\r\nandroid {\r\n    compileSdkVersion 30\r\n    buildToolsVersion \"30.0.2\"\r\n\r\n    defaultConfig {\r\n        applicationId \"com.src.terans\"\r\n        minSdkVersion 22\r\n        targetSdkVersion 30\r\n        versionCode 3\r\n        versionName \"1.0.4\"\r\n\r\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\r\n    }\r\n\r\n    buildTypes {\r\n        release {\r\n            minifyEnabled false\r\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\r\n        }\r\n    }\r\n    compileOptions {\r\n        sourceCompatibility JavaVersion.VERSION_11\r\n        targetCompatibility JavaVersion.VERSION_11\r\n    }\r\n}\r\n\r\n\r\ndependencies {\r\n    implementation fileTree(dir: 'libs', include: ['*.jar'])\r\n\r\n    implementation 'androidx.appcompat:appcompat:1.2.0' //SDK 30 -1.3.1\r\n    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'\r\n    testImplementation 'junit:junit:4.13.2'\r\n    androidTestImplementation 'androidx.test.ext:junit:1.1.3'\r\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'\r\n    implementation 'de.hdodenhof:circleimageview:2.1.0'\r\n    implementation project(\":start\")\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/build.gradle b/app/build.gradle
+--- a/app/build.gradle	(revision 073c19cc5dbef473d374dc791a2006409a2c15f7)
++++ b/app/build.gradle	(date 1656262114330)
+@@ -2,7 +2,6 @@
+ //apply plugin: 'android-maven'
+ android {
+     compileSdkVersion 30
+-    buildToolsVersion "30.0.2"
+ 
+     defaultConfig {
+         applicationId "com.src.terans"
+@@ -35,6 +34,6 @@
+     testImplementation 'junit:junit:4.13.2'
+     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+-    implementation 'de.hdodenhof:circleimageview:2.1.0'
++//    implementation 'de.hdodenhof:circleimageview:2.1.0'
+     implementation project(":start")
+ }
+Index: start/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>apply plugin: 'com.android.library'\r\n//apply plugin: 'android-maven'\r\nandroid {\r\n    compileSdkVersion 30\r\n    buildToolsVersion \"30.0.2\"\r\n\r\n    defaultConfig {\r\n        minSdkVersion 22\r\n        targetSdkVersion 30\r\n\r\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\r\n        consumerProguardFiles 'consumer-rules.pro'\r\n    }\r\n\r\n    buildTypes {\r\n        release {\r\n            minifyEnabled false\r\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\r\n        }\r\n    }\r\n\r\n}\r\n\r\ndependencies {\r\n    implementation fileTree(dir: 'libs', include: ['*.jar'])\r\n\r\n    implementation 'androidx.appcompat:appcompat:1.3.1' //SDK 30 -1.3.1\r\n    testImplementation 'junit:junit:4.13.2'\r\n    androidTestImplementation 'androidx.test.ext:junit:1.1.3'\r\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'\r\n   // implementation 'org.jetbrains:annotations-java5:15.0'\r\n\r\n}\r\nafterEvaluate {\r\n    publishing {\r\n        publications {\r\n// Creates a Maven publication called \"release\".\r\n            release(MavenPublication) {\r\n                from components.release\r\n                groupId = 'com.github.Mori-hub'\r\n                artifactId = 'Myket-Intent'\r\n                version = '0.1.15'\r\n            }\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/start/build.gradle b/start/build.gradle
+--- a/start/build.gradle	(revision 073c19cc5dbef473d374dc791a2006409a2c15f7)
++++ b/start/build.gradle	(date 1656261115419)
+@@ -2,7 +2,6 @@
+ //apply plugin: 'android-maven'
+ android {
+     compileSdkVersion 30
+-    buildToolsVersion "30.0.2"
+ 
+     defaultConfig {
+         minSdkVersion 22
+@@ -29,6 +28,7 @@
+     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    // implementation 'org.jetbrains:annotations-java5:15.0'
++    implementation 'com.google.android.play:core:1.10.3'  //Rate in google
+ 
+ }
+ afterEvaluate {
+Index: start/src/main/res/layout/my_view.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<RelativeLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:id=\"@+id/body\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:background=\"#C2185B\"\r\n    tools:ignore=\"ContentDescription\">\r\n\r\n    <View\r\n        android:id=\"@+id/view\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"200dp\"\r\n        android:layout_alignParentStart=\"true\"\r\n        android:background=\"#7B1FA2\" />\r\n\r\n\r\n    <ImageView\r\n        android:id=\"@+id/imageView\"\r\n        android:layout_width=\"70dp\"\r\n        android:layout_height=\"70dp\"\r\n        android:layout_centerHorizontal=\"true\"\r\n        android:layout_marginTop=\"20dp\"\r\n        android:layout_marginBottom=\"8dp\" />\r\n\r\n\r\n    <ScrollView\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        android:layout_below=\"@id/imageView\"\r\n        android:layout_alignParentBottom=\"true\"\r\n        android:layout_centerInParent=\"true\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginEnd=\"16dp\">\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:background=\"@drawable/shape_l_2\"\r\n            android:backgroundTint=\"@android:color/background_light\"\r\n            android:backgroundTintMode=\"src_over\"\r\n            android:orientation=\"vertical\">\r\n\r\n            <TextView\r\n                android:id=\"@+id/textView\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:gravity=\"center\"\r\n                android:textAppearance=\"@style/TextAppearance.AppCompat.Medium\" />\r\n\r\n            <TextView\r\n                android:id=\"@+id/textView2\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginStart=\"4dp\"\r\n                android:layout_marginEnd=\"4dp\"\r\n                android:gravity=\"center\"\r\n                android:textAppearance=\"@style/TextAppearance.AppCompat.Body2\" />\r\n\r\n            <TextView\r\n                android:id=\"@+id/textView3\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginStart=\"4dp\"\r\n                android:layout_marginEnd=\"4dp\"\r\n                android:layout_marginBottom=\"4dp\"\r\n                android:gravity=\"center\"\r\n                android:paddingStart=\"4dp\"\r\n                android:paddingTop=\"10dp\"\r\n                android:paddingEnd=\"4dp\"\r\n                android:textAppearance=\"@style/TextAppearance.AppCompat.Small\" />\r\n\r\n            <View\r\n                android:id=\"@+id/divider\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"5dp\"\r\n                android:background=\"@android:color/background_dark\" />\r\n\r\n            <ImageView\r\n                android:id=\"@+id/imageView2\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\"\r\n                android:layout_gravity=\"end\"\r\n                android:layout_marginTop=\"4dp\"\r\n                android:layout_marginEnd=\"4dp\"\r\n                android:layout_weight=\"1\"\r\n                android:padding=\"2dp\" />\r\n\r\n            <TextView\r\n                android:id=\"@+id/textView4\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\"\r\n                android:layout_marginStart=\"8dp\"\r\n                android:layout_marginTop=\"4dp\"\r\n                android:layout_marginEnd=\"8dp\"\r\n                android:layout_weight=\"1\"\r\n                android:textAlignment=\"center\"\r\n                android:textSize=\"18sp\"\r\n                android:textStyle=\"bold\" />\r\n\r\n            <TextView\r\n                android:id=\"@+id/textView5\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\"\r\n                android:layout_marginStart=\"8dp\"\r\n                android:layout_marginTop=\"4dp\"\r\n                android:layout_marginEnd=\"8dp\"\r\n                android:layout_marginBottom=\"4dp\"\r\n                android:layout_weight=\"1\"\r\n                android:textAlignment=\"center\"\r\n                android:textSize=\"16sp\"\r\n                android:textStyle=\"italic\" />\r\n\r\n            <TextView\r\n                android:id=\"@+id/textView6\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\"\r\n                android:layout_marginStart=\"8dp\"\r\n                android:layout_marginEnd=\"8dp\"\r\n                android:layout_marginBottom=\"4dp\"\r\n                android:layout_weight=\"1\"\r\n                android:paddingStart=\"4dp\"\r\n                android:paddingEnd=\"4dp\"\r\n                android:textAppearance=\"@style/TextAppearance.AppCompat.Small\" />\r\n\r\n            <TableRow\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginTop=\"10dp\"\r\n                android:layout_marginBottom=\"10dp\"\r\n                android:layout_weight=\"1\"\r\n                android:gravity=\"bottom|center\">\r\n\r\n                <ImageButton\r\n                    android:id=\"@+id/btnGithub\"\r\n                    android:layout_width=\"50dp\"\r\n                    android:layout_height=\"50dp\"\r\n                    android:layout_marginLeft=\"5dp\"\r\n                    android:layout_marginRight=\"5dp\"\r\n                    android:background=\"@drawable/ic_github\"\r\n                    android:contentDescription=\"@string/github\"\r\n                    android:visibility=\"gone\" />\r\n\r\n                <ImageButton\r\n                    android:id=\"@+id/btnEmail\"\r\n                    android:layout_width=\"50dp\"\r\n                    android:layout_height=\"50dp\"\r\n                    android:layout_marginLeft=\"5dp\"\r\n                    android:layout_marginRight=\"5dp\"\r\n                    android:background=\"@drawable/ic_message\"\r\n                    android:contentDescription=\"@string/email\"\r\n                    android:visibility=\"gone\" />\r\n\r\n                <ImageButton\r\n                    android:id=\"@+id/btnInsta\"\r\n                    android:layout_width=\"50dp\"\r\n                    android:layout_height=\"50dp\"\r\n                    android:layout_marginLeft=\"5dp\"\r\n                    android:layout_marginRight=\"5dp\"\r\n                    android:background=\"@drawable/ic_instagram\"\r\n                    android:contentDescription=\"@string/instagram\"\r\n                    android:visibility=\"gone\" />\r\n\r\n                <ImageButton\r\n                    android:id=\"@+id/btnWat\"\r\n                    android:layout_width=\"50dp\"\r\n                    android:layout_height=\"50dp\"\r\n                    android:layout_marginLeft=\"5dp\"\r\n                    android:layout_marginRight=\"5dp\"\r\n                    android:background=\"@drawable/ic_whatsapp\"\r\n                    android:contentDescription=\"@string/whatsup\"\r\n                    android:visibility=\"gone\" />\r\n\r\n                <ImageButton\r\n                    android:id=\"@+id/btnGoogle\"\r\n                    android:layout_width=\"50dp\"\r\n                    android:layout_height=\"50dp\"\r\n                    android:layout_marginLeft=\"5dp\"\r\n                    android:layout_marginRight=\"5dp\"\r\n                    android:background=\"@drawable/ic_google\"\r\n                    android:contentDescription=\"@string/google\"\r\n                    android:visibility=\"gone\" />\r\n            </TableRow>\r\n\r\n            <View\r\n                android:id=\"@+id/divider2\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"5dp\"\r\n                android:background=\"@android:color/background_dark\" />\r\n\r\n            <ImageView\r\n                android:id=\"@+id/myket_icon\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginBottom=\"3dp\"\r\n                app:srcCompat=\"@drawable/myket_128_b\" />\r\n\r\n            <TableLayout\r\n                android:id=\"@+id/myket_table\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\"\r\n                android:layout_marginStart=\"4dp\"\r\n                android:layout_marginTop=\"10dp\"\r\n                android:layout_marginEnd=\"4dp\"\r\n                android:layout_marginBottom=\"16dp\">\r\n\r\n                <TableRow\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"match_parent\"\r\n                    android:gravity=\"center\">\r\n\r\n                    <ImageButton\r\n                        android:id=\"@+id/btnDown\"\r\n                        android:layout_width=\"60dp\"\r\n                        android:layout_height=\"60dp\"\r\n                        android:layout_gravity=\"center\"\r\n                        android:layout_marginStart=\"6dp\"\r\n                        android:background=\"@drawable/ic_download\"\r\n                        android:contentDescription=\"@string/download1\"\r\n                        android:gravity=\"center\"\r\n                        tools:ignore=\"ImageContrastCheck\" />\r\n\r\n                    <ImageButton\r\n                        android:id=\"@+id/btnShare\"\r\n                        android:layout_width=\"60dp\"\r\n                        android:layout_height=\"60dp\"\r\n                        android:layout_gravity=\"center\"\r\n                        android:layout_marginStart=\"6dp\"\r\n                        android:background=\"@drawable/ic_share\"\r\n                        android:contentDescription=\"@string/share1\"\r\n                        android:gravity=\"center\" />\r\n\r\n                    <ImageButton\r\n                        android:id=\"@+id/btnCom\"\r\n                        android:layout_width=\"60dp\"\r\n                        android:layout_height=\"60dp\"\r\n                        android:layout_gravity=\"center\"\r\n                        android:layout_marginStart=\"6dp\"\r\n                        android:background=\"@drawable/ic_good\"\r\n                        android:contentDescription=\"@string/rate\"\r\n                        android:gravity=\"center\" />\r\n\r\n                    <ImageButton\r\n                        android:id=\"@+id/btnHelp\"\r\n                        android:layout_width=\"60dp\"\r\n                        android:layout_height=\"60dp\"\r\n                        android:layout_gravity=\"center\"\r\n                        android:layout_marginStart=\"6dp\"\r\n                        android:background=\"@drawable/ic_customer_service\"\r\n                        android:contentDescription=\"@string/help1\"\r\n                        android:gravity=\"center\" />\r\n                </TableRow>\r\n\r\n                <TableRow\r\n                    android:layout_width=\"wrap_content\"\r\n                    android:layout_height=\"match_parent\"\r\n                    android:layout_marginStart=\"4dp\"\r\n                    android:layout_marginEnd=\"4dp\"\r\n                    android:gravity=\"center\">\r\n\r\n                    <TextView\r\n                        android:id=\"@+id/textView7\"\r\n                        android:layout_width=\"match_parent\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:layout_gravity=\"center\"\r\n                        android:layout_marginStart=\"4dp\"\r\n                        android:layout_marginTop=\"2dp\"\r\n                        android:gravity=\"center\"\r\n                        android:text=\"@string/download\" />\r\n\r\n                    <TextView\r\n                        android:id=\"@+id/textView8\"\r\n                        android:layout_width=\"wrap_content\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:layout_gravity=\"center\"\r\n                        android:layout_marginStart=\"4dp\"\r\n                        android:layout_marginTop=\"2dp\"\r\n                        android:gravity=\"center\"\r\n                        android:text=\"@string/share\" />\r\n\r\n                    <TextView\r\n                        android:id=\"@+id/textView9\"\r\n                        android:layout_width=\"wrap_content\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:layout_gravity=\"center\"\r\n                        android:layout_marginStart=\"4dp\"\r\n                        android:layout_marginTop=\"2dp\"\r\n                        android:gravity=\"center\"\r\n                        android:text=\"@string/commend\" />\r\n\r\n                    <TextView\r\n                        android:id=\"@+id/textView10\"\r\n                        android:layout_width=\"wrap_content\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:layout_gravity=\"center\"\r\n                        android:layout_marginStart=\"4dp\"\r\n                        android:layout_marginTop=\"2dp\"\r\n                        android:gravity=\"center\"\r\n                        android:text=\"@string/help\" />\r\n                </TableRow>\r\n\r\n            </TableLayout>\r\n\r\n        </LinearLayout>\r\n    </ScrollView>\r\n\r\n</RelativeLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/start/src/main/res/layout/my_view.xml b/start/src/main/res/layout/my_view.xml
+--- a/start/src/main/res/layout/my_view.xml	(revision 073c19cc5dbef473d374dc791a2006409a2c15f7)
++++ b/start/src/main/res/layout/my_view.xml	(date 1656276258201)
+@@ -126,61 +126,103 @@
+ 
+             <TableRow
+                 android:layout_width="match_parent"
+-                android:layout_height="wrap_content"
+-                android:layout_marginTop="10dp"
+-                android:layout_marginBottom="10dp"
++                android:layout_height="match_parent"
++                android:layout_margin="15dp"
+                 android:layout_weight="1"
+                 android:gravity="bottom|center">
+ 
+-                <ImageButton
+-                    android:id="@+id/btnGithub"
+-                    android:layout_width="50dp"
+-                    android:layout_height="50dp"
+-                    android:layout_marginLeft="5dp"
+-                    android:layout_marginRight="5dp"
+-                    android:background="@drawable/ic_github"
+-                    android:contentDescription="@string/github"
+-                    android:visibility="gone" />
++                <HorizontalScrollView
++                    style="@android:style/Widget.Holo.ScrollView"
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:clipToPadding="true"
++                    android:fillViewport="true">
++
++                    <LinearLayout
++                        android:layout_width="wrap_content"
++                        android:layout_height="wrap_content"
++                        android:orientation="horizontal">
++
++                        <ImageButton
++                            android:id="@+id/btnGithub"
++                            android:layout_width="50dp"
++                            android:layout_height="50dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_marginRight="5dp"
++                            android:background="@drawable/ic_github"
++                            android:contentDescription="@string/github"
++                            android:maxWidth="50dp"
++                            android:maxHeight="50dp"
++                            android:scaleType="center"
++                            android:visibility="gone" />
+ 
+-                <ImageButton
+-                    android:id="@+id/btnEmail"
+-                    android:layout_width="50dp"
+-                    android:layout_height="50dp"
+-                    android:layout_marginLeft="5dp"
+-                    android:layout_marginRight="5dp"
+-                    android:background="@drawable/ic_message"
+-                    android:contentDescription="@string/email"
+-                    android:visibility="gone" />
++                        <ImageButton
++                            android:id="@+id/btnEmail"
++                            android:layout_width="50dp"
++                            android:layout_height="50dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_marginRight="5dp"
++                            android:background="@drawable/ic_message"
++                            android:contentDescription="@string/email"
++                            android:maxWidth="50dp"
++                            android:maxHeight="50dp"
++                            android:scaleType="center"
++                            android:visibility="gone" />
+ 
+-                <ImageButton
+-                    android:id="@+id/btnInsta"
+-                    android:layout_width="50dp"
+-                    android:layout_height="50dp"
+-                    android:layout_marginLeft="5dp"
+-                    android:layout_marginRight="5dp"
+-                    android:background="@drawable/ic_instagram"
+-                    android:contentDescription="@string/instagram"
+-                    android:visibility="gone" />
++                        <ImageButton
++                            android:id="@+id/btnInsta"
++                            android:layout_width="50dp"
++                            android:layout_height="50dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_marginRight="5dp"
++                            android:background="@drawable/ic_instagram"
++                            android:contentDescription="@string/instagram"
++                            android:maxWidth="50dp"
++                            android:maxHeight="50dp"
++                            android:scaleType="center"
++                            android:visibility="gone" />
+ 
+-                <ImageButton
+-                    android:id="@+id/btnWat"
+-                    android:layout_width="50dp"
+-                    android:layout_height="50dp"
+-                    android:layout_marginLeft="5dp"
+-                    android:layout_marginRight="5dp"
+-                    android:background="@drawable/ic_whatsapp"
+-                    android:contentDescription="@string/whatsup"
+-                    android:visibility="gone" />
++                        <ImageButton
++                            android:id="@+id/btnWat"
++                            android:layout_width="50dp"
++                            android:layout_height="50dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_marginRight="5dp"
++                            android:background="@drawable/ic_whatsapp"
++                            android:contentDescription="@string/whatsup"
++                            android:maxWidth="50dp"
++                            android:maxHeight="50dp"
++                            android:scaleType="center"
++                            android:visibility="gone" />
+ 
+-                <ImageButton
+-                    android:id="@+id/btnGoogle"
+-                    android:layout_width="50dp"
+-                    android:layout_height="50dp"
+-                    android:layout_marginLeft="5dp"
+-                    android:layout_marginRight="5dp"
+-                    android:background="@drawable/ic_google"
+-                    android:contentDescription="@string/google"
+-                    android:visibility="gone" />
++                        <ImageButton
++                            android:id="@+id/btnGoogle"
++                            android:layout_width="50dp"
++                            android:layout_height="50dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_marginRight="5dp"
++                            android:background="@drawable/ic_google_play"
++                            android:contentDescription="@string/google"
++                            android:maxWidth="50dp"
++                            android:maxHeight="50dp"
++                            android:scaleType="center"
++                            android:visibility="gone" />
++
++                        <ImageButton
++                            android:id="@+id/btnGRate"
++                            android:layout_width="50dp"
++                            android:layout_height="50dp"
++                            android:layout_marginLeft="5dp"
++                            android:layout_marginRight="5dp"
++                            android:background="@drawable/ic_grate"
++                            android:contentDescription="@string/google_rate"
++                            android:maxWidth="50dp"
++                            android:maxHeight="50dp"
++                            android:scaleType="center"
++                            android:visibility="gone" />
++                    </LinearLayout>
++                </HorizontalScrollView>
++
+             </TableRow>
+ 
+             <View
+@@ -193,8 +235,7 @@
+                 android:id="@+id/myket_icon"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+-                android:layout_marginBottom="3dp"
+-                app:srcCompat="@drawable/myket_128_b" />
++                android:layout_marginBottom="3dp" />
+ 
+             <TableLayout
+                 android:id="@+id/myket_table"
+@@ -212,8 +253,8 @@
+ 
+                     <ImageButton
+                         android:id="@+id/btnDown"
+-                        android:layout_width="60dp"
+-                        android:layout_height="60dp"
++                        android:layout_width="50dp"
++                        android:layout_height="50dp"
+                         android:layout_gravity="center"
+                         android:layout_marginStart="6dp"
+                         android:background="@drawable/ic_download"
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"DesignSurface\">\r\n    <option name=\"filePathToZoomLevelMap\">\r\n      <map>\r\n        <entry key=\"..\\:/My WD/E/Projects/A-DONE/Module Myket/start/src/main/res/drawable/ic_google.xml\" value=\"0.19054054054054054\" />\r\n        <entry key=\"..\\:/My WD/E/Projects/A-DONE/Module Myket/start/src/main/res/layout-land/my_view.xml\" value=\"0.33\" />\r\n        <entry key=\"..\\:/My WD/E/Projects/A-DONE/Module Myket/start/src/main/res/layout/my_view.xml\" value=\"0.5\" />\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_11\" default=\"true\" project-jdk-name=\"11\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\r\n  </component>\r\n  <component name=\"ProjectType\">\r\n    <option name=\"id\" value=\"Android\" />\r\n  </component>\r\n  <component name=\"masterDetails\">\r\n    <states>\r\n      <state key=\"ProjectJDKs.UI\">\r\n        <settings>\r\n          <last-edited>1.8</last-edited>\r\n          <splitter-proportions>\r\n            <option name=\"proportions\">\r\n              <list>\r\n                <option value=\"0.2\" />\r\n              </list>\r\n            </option>\r\n          </splitter-proportions>\r\n        </settings>\r\n      </state>\r\n    </states>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 073c19cc5dbef473d374dc791a2006409a2c15f7)
++++ b/.idea/misc.xml	(date 1656276832731)
+@@ -3,9 +3,13 @@
+   <component name="DesignSurface">
+     <option name="filePathToZoomLevelMap">
+       <map>
++        <entry key="..\:/My WD/E/Projects/A-DONE/Module Myket/start/src/main/res/drawable/ic_download.xml" value="0.1685" />
++        <entry key="..\:/My WD/E/Projects/A-DONE/Module Myket/start/src/main/res/drawable/ic_github.xml" value="0.1685" />
++        <entry key="..\:/My WD/E/Projects/A-DONE/Module Myket/start/src/main/res/drawable/ic_good.xml" value="0.1685" />
+         <entry key="..\:/My WD/E/Projects/A-DONE/Module Myket/start/src/main/res/drawable/ic_google.xml" value="0.19054054054054054" />
++        <entry key="..\:/My WD/E/Projects/A-DONE/Module Myket/start/src/main/res/drawable/ic_share.xml" value="0.1685" />
+         <entry key="..\:/My WD/E/Projects/A-DONE/Module Myket/start/src/main/res/layout-land/my_view.xml" value="0.33" />
+-        <entry key="..\:/My WD/E/Projects/A-DONE/Module Myket/start/src/main/res/layout/my_view.xml" value="0.5" />
++        <entry key="..\:/My WD/E/Projects/A-DONE/Module Myket/start/src/main/res/layout/my_view.xml" value="0.22" />
+       </map>
+     </option>
+   </component>
+Index: start/src/main/res/drawable/ic_download.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><vector xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:aapt=\"http://schemas.android.com/aapt\"\r\n    android:width=\"512dp\"\r\n    android:height=\"512dp\"\r\n    android:viewportWidth=\"512\"\r\n    android:viewportHeight=\"512\">\r\n  <path\r\n      android:pathData=\"M512,118.226v275.547C512,459.071 459.071,512 393.774,512H118.227C52.929,512 0,459.071 0,393.774V118.226C0,52.929 52.929,0 118.227,0h275.547C459.071,0 512,52.929 512,118.226z\">\r\n    <aapt:attr name=\"android:fillColor\">\r\n      <gradient \r\n          android:startY=\"5\"\r\n          android:startX=\"256\"\r\n          android:endY=\"515.04\"\r\n          android:endX=\"256\"\r\n          android:type=\"linear\">\r\n        <item android:offset=\"0\" android:color=\"#FF94E4D1\"/>\r\n        <item android:offset=\"1\" android:color=\"#FF32ADB7\"/>\r\n      </gradient>\r\n    </aapt:attr>\r\n  </path>\r\n  <path\r\n      android:pathData=\"M118.226,508C55.242,508 4,456.758 4,393.773V118.227C4,55.242 55.242,4 118.226,4h275.547C456.758,4 508,55.242 508,118.227v275.547C508,456.758 456.758,508 393.773,508H118.226z\">\r\n    <aapt:attr name=\"android:fillColor\">\r\n      <gradient \r\n          android:startY=\"8.922\"\r\n          android:startX=\"256\"\r\n          android:endY=\"510.99\"\r\n          android:endX=\"256\"\r\n          android:type=\"linear\">\r\n        <item android:offset=\"0\" android:color=\"#FF57D4B7\"/>\r\n        <item android:offset=\"1\" android:color=\"#FF209AB7\"/>\r\n      </gradient>\r\n    </aapt:attr>\r\n  </path>\r\n  <path\r\n      android:pathData=\"M512,330.07v63.7C512,459.07 459.07,512 393.77,512H302L98,308l236.323,-155.537C334.343,152.483 508,326.07 508,326.07L512,330.07z\"\r\n      android:strokeAlpha=\"0.5\"\r\n      android:fillAlpha=\"0.5\">\r\n    <aapt:attr name=\"android:fillColor\">\r\n      <gradient \r\n          android:startY=\"210.0175\"\r\n          android:startX=\"195.9825\"\r\n          android:endY=\"476.6475\"\r\n          android:endX=\"462.6125\"\r\n          android:type=\"linear\">\r\n        <item android:offset=\"0\" android:color=\"#FF006793\"/>\r\n        <item android:offset=\"1\" android:color=\"#002C9FB7\"/>\r\n      </gradient>\r\n    </aapt:attr>\r\n  </path>\r\n  <path\r\n      android:pathData=\"M380.635,233.711c-4.068,0 -8.022,0.481 -11.822,1.362c-1.717,-53.568 -45.677,-96.469 -99.662,-96.469c-44.099,0 -81.506,28.627 -94.667,68.31c-6.031,-1.785 -12.411,-2.758 -19.022,-2.758c-36.973,0 -66.945,29.972 -66.945,66.945s29.972,66.945 66.945,66.945c20.035,0 206.094,0 225.173,0c28.811,0 52.167,-23.356 52.167,-52.167S409.446,233.711 380.635,233.711z\"\r\n      android:strokeAlpha=\"0.3\"\r\n      android:fillColor=\"#1A1A1A\"\r\n      android:fillAlpha=\"0.3\"/>\r\n  <path\r\n      android:pathData=\"M375.635,228.711c-4.068,0 -8.022,0.481 -11.822,1.362c-1.717,-53.568 -45.677,-96.469 -99.662,-96.469c-44.099,0 -81.506,28.627 -94.667,68.31c-6.031,-1.785 -12.411,-2.758 -19.022,-2.758c-36.973,0 -66.945,29.972 -66.945,66.945s29.972,66.945 66.945,66.945c20.035,0 206.094,0 225.173,0c28.811,0 52.167,-23.356 52.167,-52.167S404.446,228.711 375.635,228.711z\">\r\n    <aapt:attr name=\"android:fillColor\">\r\n      <gradient \r\n          android:startY=\"137.46\"\r\n          android:startX=\"255.6595\"\r\n          android:endY=\"358.13\"\r\n          android:endX=\"255.6595\"\r\n          android:type=\"linear\">\r\n        <item android:offset=\"0\" android:color=\"#FFFFFFFF\"/>\r\n        <item android:offset=\"1\" android:color=\"#FFA3A3A3\"/>\r\n      </gradient>\r\n    </aapt:attr>\r\n  </path>\r\n  <path\r\n      android:pathData=\"M375.635,218.696c-4.068,0 -8.022,0.481 -11.822,1.362c-1.717,-53.568 -45.677,-96.469 -99.662,-96.469c-44.099,0 -81.506,28.627 -94.667,68.31c-6.031,-1.785 -12.411,-2.758 -19.022,-2.758c-36.973,0 -66.945,29.972 -66.945,66.945s29.972,66.945 66.945,66.945c20.035,0 206.094,0 225.173,0c28.811,0 52.167,-23.356 52.167,-52.167S404.446,218.696 375.635,218.696z\"\r\n      android:fillColor=\"#FFFFFF\"/>\r\n  <path\r\n      android:pathData=\"M150.463,321.03c-35.811,0 -64.945,-29.134 -64.945,-64.945s29.134,-64.945 64.945,-64.945c6.246,0 12.455,0.9 18.454,2.676l1.857,0.549l0.609,-1.838c13.278,-40.038 50.56,-66.939 92.769,-66.939c25.547,0 49.71,9.795 68.039,27.582c18.288,17.747 28.81,41.524 29.624,66.951l0.078,2.435l2.372,-0.55c3.751,-0.869 7.576,-1.31 11.371,-1.31c27.662,0 50.167,22.505 50.167,50.167s-22.505,50.167 -50.167,50.167L150.463,321.03L150.463,321.03z\">\r\n    <aapt:attr name=\"android:fillColor\">\r\n      <gradient \r\n          android:startY=\"129.37\"\r\n          android:startX=\"255.6605\"\r\n          android:endY=\"345.61\"\r\n          android:endX=\"255.6605\"\r\n          android:type=\"linear\">\r\n        <item android:offset=\"0\" android:color=\"#FFFFFFFF\"/>\r\n        <item android:offset=\"1\" android:color=\"#FFE6E6E6\"/>\r\n      </gradient>\r\n    </aapt:attr>\r\n  </path>\r\n  <path\r\n      android:pathData=\"M342.361,295.595c-0.878,-18.037 -23.8,-27.782 -37.218,-14.367l-22.312,22.312v-98.153c0,-3.768 -0.955,-7.313 -2.635,-10.406c-7.034,-12.954 -25.856,-14.721 -35.356,-4.273c-3.524,3.877 -5.672,9.027 -5.672,14.679v98.152l-22.311,-22.311c-4.263,-4.263 -9.85,-6.394 -15.438,-6.394c-12.722,0 -20.498,9.652 -21.831,20.761v11.738h0.032c-0.176,5.807 1.93,11.67 6.362,16.103l59.58,59.581c8.411,8.4 22.47,8.416 30.875,0l59.581,-59.581c4.432,-4.432 6.538,-10.296 6.362,-16.103C342.397,305.999 342.382,296.895 342.361,295.595C342.361,295.595 342.382,296.895 342.361,295.595C342.361,295.595 342.382,296.895 342.361,295.595C342.361,295.595 342.382,296.895 342.361,295.595z\"\r\n      android:strokeAlpha=\"0.3\"\r\n      android:fillColor=\"#1A1A1A\"\r\n      android:fillAlpha=\"0.3\"/>\r\n  <path\r\n      android:pathData=\"M337.412,290.595h-3.884c-0.737,-1.064 -1.562,-2.086 -2.51,-3.034c-4.263,-4.263 -9.85,-6.394 -15.437,-6.394c-5.588,0 -11.174,2.132 -15.438,6.394l-22.312,22.312V211.72c0,-12.057 -9.775,-21.832 -21.832,-21.832s-21.832,9.774 -21.832,21.832v98.152l-22.311,-22.311c-8.526,-8.525 -22.348,-8.525 -30.875,0c-0.948,0.948 -1.773,1.97 -2.51,3.034h-3.884v11.738h0.032c-0.176,5.807 1.93,11.67 6.362,16.103l59.58,59.581c8.411,8.4 22.47,8.416 30.875,0l59.581,-59.581c4.432,-4.432 6.538,-10.296 6.362,-16.103h0.032v-11.738H337.412z\">\r\n    <aapt:attr name=\"android:fillColor\">\r\n      <gradient \r\n          android:startY=\"382.43\"\r\n          android:startX=\"255.9995\"\r\n          android:endY=\"184.52\"\r\n          android:endX=\"255.9995\"\r\n          android:type=\"linear\">\r\n        <item android:offset=\"0\" android:color=\"#FFC97A22\"/>\r\n        <item android:offset=\"1\" android:color=\"#FFC96425\"/>\r\n      </gradient>\r\n    </aapt:attr>\r\n  </path>\r\n  <path\r\n      android:pathData=\"M331.018,307.103l-59.581,59.581c-8.41,8.41 -22.469,8.406 -30.875,0l-59.58,-59.581c-8.525,-8.526 -8.525,-22.349 0,-30.875c8.526,-8.525 22.348,-8.525 30.875,0l22.311,22.311v-98.152c0,-12.057 9.775,-21.832 21.832,-21.832c12.057,0 21.832,9.774 21.832,21.832v98.153l22.312,-22.312c4.263,-4.263 9.85,-6.394 15.437,-6.394s11.174,2.132 15.437,6.394C339.543,284.754 339.543,298.577 331.018,307.103z\">\r\n    <aapt:attr name=\"android:fillColor\">\r\n      <gradient \r\n          android:startY=\"371.1\"\r\n          android:startX=\"256\"\r\n          android:endY=\"173.19\"\r\n          android:endX=\"256\"\r\n          android:type=\"linear\">\r\n        <item android:offset=\"0\" android:color=\"#FFFFC847\"/>\r\n        <item android:offset=\"1\" android:color=\"#FFFFA24A\"/>\r\n      </gradient>\r\n    </aapt:attr>\r\n  </path>\r\n  <path\r\n      android:pathData=\"M256,371.078c-5.193,0 -10.32,-2.19 -13.996,-5.783l-59.607,-59.606c-7.732,-7.732 -7.732,-20.313 0,-28.046c3.746,-3.745 8.727,-5.808 14.023,-5.808s10.277,2.063 14.023,5.808l25.725,25.726V200.387c0,-10.935 8.896,-19.832 19.832,-19.832c10.935,0 19.831,8.896 19.831,19.832v102.981l25.727,-25.726c3.746,-3.746 8.726,-5.808 14.022,-5.808c5.298,0 10.277,2.063 14.023,5.808c7.732,7.733 7.732,20.314 0,28.046l-59.596,59.595C266.328,368.88 261.191,371.078 256,371.078z\">\r\n    <aapt:attr name=\"android:fillColor\">\r\n      <gradient \r\n          android:startY=\"369.22\"\r\n          android:startX=\"256\"\r\n          android:endY=\"175.3\"\r\n          android:endX=\"256\"\r\n          android:type=\"linear\">\r\n        <item android:offset=\"0\" android:color=\"#FFF7BA2A\"/>\r\n        <item android:offset=\"1\" android:color=\"#FFF78F2D\"/>\r\n      </gradient>\r\n    </aapt:attr>\r\n  </path>\r\n</vector>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/start/src/main/res/drawable/ic_download.xml b/start/src/main/res/drawable/ic_download.xml
+--- a/start/src/main/res/drawable/ic_download.xml	(revision 073c19cc5dbef473d374dc791a2006409a2c15f7)
++++ b/start/src/main/res/drawable/ic_download.xml	(date 1656275937306)
+@@ -1,7 +1,7 @@
+ <vector xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:aapt="http://schemas.android.com/aapt"
+-    android:width="512dp"
+-    android:height="512dp"
++    android:width="50dp"
++    android:height="50dp"
+     android:viewportWidth="512"
+     android:viewportHeight="512">
+   <path
+Index: start/src/main/res/drawable/ic_grate.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/start/src/main/res/drawable/ic_grate.xml b/start/src/main/res/drawable/ic_grate.xml
+new file mode 100644
+--- /dev/null	(date 1656269898766)
++++ b/start/src/main/res/drawable/ic_grate.xml	(date 1656269898766)
+@@ -0,0 +1,45 @@
++<vector xmlns:android="http://schemas.android.com/apk/res/android"
++    android:width="512dp"
++    android:height="512dp"
++    android:viewportWidth="512"
++    android:viewportHeight="512">
++  <path
++      android:pathData="M240.93,267.57m-167.73,0a167.73,167.73 0,1 1,335.45 0a167.73,167.73 0,1 1,-335.45 0"
++      android:fillColor="#ece5dd"/>
++  <path
++      android:pathData="m240.93,99.84c-7.41,0 -14.72,0.49 -21.88,1.42 82.3,10.72 145.85,81.09 145.85,166.31 0,85.22 -63.55,155.59 -145.85,166.31 7.16,0.93 14.46,1.42 21.88,1.42C333.56,435.29 408.65,360.2 408.65,267.57 408.65,174.93 333.56,99.84 240.93,99.84Z"
++      android:fillColor="#d9cbbd"/>
++  <path
++      android:pathData="M311.82,217.55C295.31,193.95 269.3,180.42 240.44,180.42c-23.78,0 -46.02,9.45 -62.62,26.61l-3.82,3.95 -33.73,-28.93 4.17,-4.45C156.65,164.59 171.05,154.35 187.27,147.16 204.07,139.71 221.96,135.94 240.44,135.94c21.73,0 43.2,5.33 62.1,15.43 18.86,10.07 35.19,24.9 47.24,42.89l1.55,2.32c1.02,1.53 0.55,3.6 -1.03,4.54l-32.84,19.36c-1.44,0.85 -3.29,0.45 -4.25,-0.92z"
++      android:fillColor="#cd2900"/>
++  <path
++      android:pathData="M125.6,331.82C114.62,312.27 108.82,290.05 108.82,267.57c0,-29.78 9.74,-57.89 28.17,-81.3l3.76,-4.78 33.73,28.93 -3.34,4.38c-11.67,15.29 -17.84,33.54 -17.84,52.76 0,14.42 3.62,28.72 10.46,41.36l2.62,4.85 -37.8,23.36z"
++      android:fillColor="#ffce00"/>
++  <path
++      android:pathData="m240.44,399.19c-43.52,0 -84.2,-21.55 -108.82,-57.64l-3.44,-5.04 37.81,-23.37 3.16,4.49c16.36,23.22 43.01,37.08 71.28,37.08 23.49,0 46.35,-9.72 62.74,-26.67l3.82,-3.95 33.7,28.9 -4.16,4.45c-12.2,13.03 -26.61,23.3 -42.85,30.51C276.87,395.41 258.95,399.19 240.44,399.19Z"
++      android:fillColor="#40a459"/>
++  <path
++      android:pathData="m306.53,324.64 l3.33,-4.38c5.36,-7.04 9.6,-14.83 12.6,-23.16l-64.59,-0c-1.77,0 -3.2,-1.43 -3.2,-3.2l0,-38.08c0,-1.77 1.43,-3.2 3.2,-3.2l111.08,0c1.53,0 2.78,1.22 2.82,2.75l0.31,12.28c-0.01,29.7 -9.73,57.75 -28.08,81.12l-3.76,4.79z"
++      android:fillColor="#1d81ce"/>
++  <path
++      android:fillColor="#FF000000"
++      android:pathData="m377.18,267.43 l-0.37,-14.59c-0.08,-2.97 -2.5,-5.33 -5.47,-5.33L255.03,247.51c-3.02,0 -5.47,2.45 -5.47,5.47l0,43.76c0,3.02 2.45,5.47 5.47,5.47l59.81,0c-13.35,28.65 -42.32,47.4 -74.39,47.4 -45.08,0 -81.79,-36.55 -82.04,-81.58 -0.24,-43.95 34.68,-80.62 78.59,-82.43 3.82,-0.16 7.59,-0.05 11.31,0.3 1.6,0.15 3.18,-0.43 4.31,-1.56 0.03,-0.03 0.06,-0.06 0.09,-0.09 3.22,-3.22 1.28,-8.79 -3.26,-9.22 -2.98,-0.28 -5.98,-0.43 -9.02,-0.43 -26.2,0 -49.89,10.89 -66.81,28.38L148.71,181.59C171.67,157.1 204.3,141.77 240.44,141.77c42.39,0 81.05,20.73 104.5,55.73l-28.34,16.7c-9.35,-13.36 -21.77,-23.78 -36,-30.58 -2.06,-0.98 -4.52,-0.54 -6.14,1.08l-0.07,0.07c-2.63,2.63 -1.91,7.1 1.44,8.7 13.95,6.65 25.92,17.25 34.41,30.96 1.56,2.53 4.86,3.34 7.43,1.83l37.71,-22.23c1.26,-0.74 2.17,-1.96 2.53,-3.38 0.36,-1.42 0.13,-2.92 -0.64,-4.18C345.28,176.82 328.39,160.36 308.42,148.9 287.83,137.08 264.32,130.83 240.44,130.83 165.05,130.83 103.71,192.17 103.71,267.57c0,46.36 23.19,87.4 58.58,112.13 2.14,1.5 5.06,1.22 6.91,-0.63l0.07,-0.07c2.38,-2.39 2.03,-6.34 -0.73,-8.27 -12.56,-8.78 -23.45,-19.79 -32.09,-32.46l27.94,-17.27c16.84,23.9 44.65,39.55 76.05,39.55 25.76,0 49.75,-10.68 66.93,-28.45l24.9,21.36c-22.97,24.55 -55.64,39.91 -91.83,39.91 -17.27,0 -33.74,-3.51 -48.73,-9.84 -2.03,-0.86 -4.37,-0.4 -5.92,1.16l-0.08,0.08c-2.73,2.73 -1.8,7.34 1.76,8.84 16.3,6.88 34.2,10.69 52.98,10.69 75.4,0 136.73,-61.34 136.73,-136.73 -0,-0.05 -0,-0.09 -0,-0.14zM130.69,328.96C120.48,310.79 114.65,289.85 114.65,267.57c0,-29.29 10.07,-56.28 26.92,-77.69l24.93,21.39c-11.94,15.64 -19.04,35.15 -19.04,56.3 0,15.96 4.04,31 11.16,44.13zM339.4,345.15 L314.5,323.79c5.73,-7.53 10.37,-16 13.63,-25.23 0.59,-1.67 0.33,-3.53 -0.69,-4.98 -1.03,-1.45 -2.69,-2.31 -4.47,-2.31l-62.48,-0l0,-32.82l105.51,0l0.23,9.18c-0.01,29.22 -10.04,56.14 -26.84,77.51z"/>
++  <path
++      android:fillColor="#FF000000"
++      android:pathData="M362.91,145.1C330.2,112.38 286.71,94.37 240.44,94.37 194.18,94.37 150.69,112.38 117.98,145.1 85.26,177.81 67.25,221.3 67.25,267.57 67.25,313.83 85.26,357.32 117.98,390.03 150.69,422.75 194.18,440.76 240.44,440.76 286.71,440.76 330.2,422.75 362.91,390.03 395.63,357.32 413.64,313.83 413.64,267.57 413.64,221.3 395.63,177.81 362.91,145.1ZM240.44,429.82C150.97,429.82 78.19,357.04 78.19,267.57 78.19,178.1 150.97,105.31 240.44,105.31 329.91,105.31 402.7,178.1 402.7,267.57 402.7,357.04 329.91,429.82 240.44,429.82Z"/>
++  <path
++      android:pathData="M317.9,6.54l-17.35,53.38l-54.84,0l44.37,32.24l-17.2,52.93l45.02,-32.72l45.01,32.72l-17.19,-52.94l44.35,-32.24l-54.83,0z"
++      android:fillColor="#ffcc00"/>
++  <path
++      android:pathData="M52.03,189.88l-54.84,0l44.37,32.23l-17.2,52.93l45.02,-32.72l45.01,32.72l-17.2,-52.93l44.37,-32.23l-54.84,0l-17.35,-53.39z"
++      android:fillColor="#ffcc00"/>
++  <path
++      android:pathData="M420.85,258.45l-54.84,0l44.37,32.23l-17.2,52.93l45.02,-32.72l45.01,32.72l-17.2,-52.93l44.37,-32.23l-54.84,0l-17.35,-53.39z"
++      android:fillColor="#ffcc00"/>
++  <path
++      android:pathData="M358.04,406.38l-17.34,-53.39l-17.35,53.39l-54.84,0l44.36,32.23l-17.19,52.94l45.02,-32.72l45.01,32.72l-17.19,-52.94l44.36,-32.23z"
++      android:fillColor="#ffcc00"/>
++  <path
++      android:pathData="M145.93,390.52l-17.35,-53.39l-17.35,53.39l-54.84,0l44.37,32.23l-17.19,52.94l45.02,-32.72l45.01,32.72l-17.19,-52.94l44.36,-32.23z"
++      android:fillColor="#ffcc00"/>
++</vector>
+Index: build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>// Top-level build file where you can add configuration options common to all sub-projects/modules.\r\n\r\nbuildscript {\r\n    \r\n    repositories {\r\n        google()\r\n        mavenCentral()\r\n        maven {\r\n            url = uri(\"https://plugins.gradle.org/m2/\")\r\n        }\r\n        maven { url \"https://jitpack.io\" }\r\n    }\r\n    dependencies {\r\n        classpath 'com.android.tools.build:gradle:7.0.2'\r\n       classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'\r\n        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'\r\n\r\n        // NOTE: Do not place your application dependencies here; they belong\r\n        // in the individual module build.gradle files\r\n    }\r\n}\r\nplugins {\r\n    id 'maven-publish'\r\n}\r\nallprojects {\r\n    repositories {\r\n        google()\r\n        mavenCentral()\r\n        \r\n    }\r\n}\r\n\r\ntask clean(type: Delete) {\r\n    delete rootProject.buildDir\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/build.gradle b/build.gradle
+--- a/build.gradle	(revision 073c19cc5dbef473d374dc791a2006409a2c15f7)
++++ b/build.gradle	(date 1656260015042)
+@@ -11,7 +11,7 @@
+         maven { url "https://jitpack.io" }
+     }
+     dependencies {
+-        classpath 'com.android.tools.build:gradle:7.0.2'
++        classpath 'com.android.tools.build:gradle:7.2.1'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
+ 
+Index: start/src/main/res/drawable/ic_google_play.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/start/src/main/res/drawable/ic_google_play.xml b/start/src/main/res/drawable/ic_google_play.xml
+new file mode 100644
+--- /dev/null	(date 1656269982693)
++++ b/start/src/main/res/drawable/ic_google_play.xml	(date 1656269982693)
+@@ -0,0 +1,66 @@
++<vector xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:aapt="http://schemas.android.com/aapt"
++    android:width="466.9dp"
++    android:height="466.9dp"
++    android:viewportWidth="466.9"
++    android:viewportHeight="466.9">
++  <path
++      android:pathData="M291.15,142.3L44.45,1.3C41.35,-0.5 37.45,-0.4 34.45,1.4c-3.1,1.8 -5,5 -5,8.6 0,0 0.1,13 0.2,34.4l179.7,179.7 81.8,-81.8z">
++    <aapt:attr name="android:fillColor">
++      <gradient 
++          android:startX="29.45"
++          android:startY="112.09"
++          android:endX="291.2"
++          android:endY="112.09"
++          android:type="linear">
++        <item android:offset="0" android:color="#FF63BE6B"/>
++        <item android:offset="0.51" android:color="#FF5BBC6A"/>
++        <item android:offset="1" android:color="#FF4AB96A"/>
++      </gradient>
++    </aapt:attr>
++  </path>
++  <path
++      android:pathData="M29.65,44.4C29.95,121.6 30.85,309 31.25,402.3L209.45,224.1 29.65,44.4z">
++    <aapt:attr name="android:fillColor">
++      <gradient 
++          android:startX="29.6"
++          android:startY="223.39"
++          android:endX="209.35"
++          android:endY="223.39"
++          android:type="linear">
++        <item android:offset="0" android:color="#FF3EC6F2"/>
++        <item android:offset="1" android:color="#FF45AFE3"/>
++      </gradient>
++    </aapt:attr>
++  </path>
++  <path
++      android:pathData="M432.35,223l-141.2,-80.7 -81.9,81.8 92.4,92.4L432.45,240.3c3.1,-1.8 5,-5.1 5,-8.6 0,-3.6 -2,-6.9 -5.1,-8.7z">
++    <aapt:attr name="android:fillColor">
++      <gradient 
++          android:startX="209.35"
++          android:startY="229.46"
++          android:endX="437.43"
++          android:endY="229.46"
++          android:type="linear">
++        <item android:offset="0" android:color="#FFFAA51A"/>
++        <item android:offset="0.39" android:color="#FFFAB716"/>
++        <item android:offset="0.74" android:color="#FFFAC412"/>
++        <item android:offset="1" android:color="#FFFAC80F"/>
++      </gradient>
++    </aapt:attr>
++  </path>
++  <path
++      android:pathData="M31.15,402.3c0.2,33.3 0.3,54.6 0.3,54.6 0,3.6 1.9,6.9 5,8.6 3.1,1.8 6.9,1.8 10,0l255.3,-148.9 -92.4,-92.4L31.15,402.3z">
++    <aapt:attr name="android:fillColor">
++      <gradient 
++          android:startX="31.19"
++          android:startY="345.52"
++          android:endX="301.75"
++          android:endY="345.52"
++          android:type="linear">
++        <item android:offset="0" android:color="#FFEC3B50"/>
++        <item android:offset="1" android:color="#FFE7515B"/>
++      </gradient>
++    </aapt:attr>
++  </path>
++</vector>
+Index: gradle/wrapper/gradle-wrapper.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#Thu Dec 03 11:27:20 IRST 2020\r\ndistributionBase=GRADLE_USER_HOME\r\ndistributionPath=wrapper/dists\r\nzipStoreBase=GRADLE_USER_HOME\r\nzipStorePath=wrapper/dists\r\ndistributionUrl=https\\://services.gradle.org/distributions/gradle-7.0.2-all.zip\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>ISO-8859-1
+===================================================================
+diff --git a/gradle/wrapper/gradle-wrapper.properties b/gradle/wrapper/gradle-wrapper.properties
+--- a/gradle/wrapper/gradle-wrapper.properties	(revision 073c19cc5dbef473d374dc791a2006409a2c15f7)
++++ b/gradle/wrapper/gradle-wrapper.properties	(date 1656260015132)
+@@ -3,4 +3,4 @@
+ distributionPath=wrapper/dists
+ zipStoreBase=GRADLE_USER_HOME
+ zipStorePath=wrapper/dists
+-distributionUrl=https\://services.gradle.org/distributions/gradle-7.0.2-all.zip
++distributionUrl=https\://services.gradle.org/distributions/gradle-7.3.3-all.zip
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"GradleMigrationSettings\" migrationVersion=\"1\" />\r\n  <component name=\"GradleSettings\">\r\n    <option name=\"linkedExternalProjectsSettings\">\r\n      <GradleProjectSettings>\r\n        <option name=\"testRunner\" value=\"GRADLE\" />\r\n        <option name=\"distributionType\" value=\"DEFAULT_WRAPPED\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"gradleJvm\" value=\"11\" />\r\n        <option name=\"modules\">\r\n          <set>\r\n            <option value=\"$PROJECT_DIR$\" />\r\n            <option value=\"$PROJECT_DIR$/app\" />\r\n            <option value=\"$PROJECT_DIR$/start\" />\r\n          </set>\r\n        </option>\r\n        <option name=\"resolveModulePerSourceSet\" value=\"false\" />\r\n      </GradleProjectSettings>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/gradle.xml b/.idea/gradle.xml
+--- a/.idea/gradle.xml	(revision 073c19cc5dbef473d374dc791a2006409a2c15f7)
++++ b/.idea/gradle.xml	(date 1656240900278)
+@@ -15,7 +15,6 @@
+             <option value="$PROJECT_DIR$/start" />
+           </set>
+         </option>
+-        <option name="resolveModulePerSourceSet" value="false" />
+       </GradleProjectSettings>
+     </option>
+   </component>
+Index: start/src/main/res/layout-land/my_view.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<RelativeLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    android:orientation=\"vertical\" android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:id=\"@+id/body\"\r\n    tools:ignore=\"ContentDescription\"\r\n    android:tag=\"land\"\r\n    android:background=\"#C2185B\">\r\n\r\n\r\n    <View\r\n        android:id=\"@+id/view\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"200dp\"\r\n        android:layout_alignParentStart=\"true\"\r\n        android:background=\"#7B1FA2\" />\r\n\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        android:layout_centerInParent=\"true\"\r\n        android:layout_marginStart=\"4dp\"\r\n        android:layout_marginTop=\"8dp\"\r\n        android:layout_marginEnd=\"4dp\"\r\n        android:layout_marginBottom=\"4dp\"\r\n        android:baselineAligned=\"false\"\r\n        android:orientation=\"horizontal\">\r\n\r\n        <ScrollView\r\n            android:id=\"@+id/s1\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"match_parent\"\r\n            android:layout_marginRight=\"8dp\"\r\n            android:layout_weight=\"1\"\r\n            android:padding=\"4dp\">\r\n\r\n            <LinearLayout\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:background=\"@drawable/shape_l_2\"\r\n                android:backgroundTint=\"@android:color/background_light\"\r\n                android:backgroundTintMode=\"src_over\"\r\n                android:orientation=\"vertical\">\r\n\r\n                <ImageView\r\n                    android:id=\"@+id/imageView2\"\r\n                    android:layout_width=\"50dp\"\r\n                    android:layout_height=\"50dp\"\r\n                    android:layout_gravity=\"center_horizontal\"\r\n                    android:layout_marginTop=\"4dp\"\r\n                    android:layout_marginEnd=\"4dp\"\r\n                    android:layout_weight=\"1\"\r\n                    android:padding=\"2dp\" />\r\n\r\n                <TextView\r\n                    android:id=\"@+id/textView4\"\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"match_parent\"\r\n                    android:layout_marginStart=\"8dp\"\r\n                    android:layout_marginTop=\"4dp\"\r\n                    android:layout_marginEnd=\"8dp\"\r\n                    android:layout_weight=\"1\"\r\n                    android:textAlignment=\"center\"\r\n                    android:textSize=\"18sp\"\r\n                    android:textStyle=\"bold\" />\r\n\r\n                <TextView\r\n                    android:id=\"@+id/textView5\"\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"match_parent\"\r\n                    android:layout_marginStart=\"8dp\"\r\n                    android:layout_marginTop=\"4dp\"\r\n                    android:layout_marginEnd=\"8dp\"\r\n                    android:layout_marginBottom=\"4dp\"\r\n                    android:layout_weight=\"1\"\r\n                    android:textAlignment=\"center\"\r\n                    android:textSize=\"16sp\"\r\n                    android:textStyle=\"italic\" />\r\n\r\n                <TextView\r\n                    android:id=\"@+id/textView6\"\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"match_parent\"\r\n                    android:layout_marginStart=\"8dp\"\r\n                    android:layout_marginEnd=\"8dp\"\r\n                    android:layout_marginBottom=\"4dp\"\r\n                    android:layout_weight=\"1\"\r\n                    android:paddingStart=\"4dp\"\r\n                    android:paddingEnd=\"4dp\"\r\n                    android:textAppearance=\"@style/TextAppearance.AppCompat.Small\" />\r\n\r\n                <View\r\n                    android:id=\"@+id/divider\"\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"5dp\"\r\n                    android:background=\"@android:color/background_dark\" />\r\n\r\n                <TableRow\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_marginTop=\"10dp\"\r\n                    android:layout_marginBottom=\"10dp\"\r\n                    android:layout_weight=\"1\"\r\n                    android:gravity=\"bottom|center\">\r\n\r\n                    <ImageButton\r\n                        android:id=\"@+id/btnGithub\"\r\n                        android:layout_width=\"50dp\"\r\n                        android:layout_height=\"50dp\"\r\n                        android:layout_marginLeft=\"5dp\"\r\n                        android:layout_marginRight=\"5dp\"\r\n                        android:background=\"@drawable/ic_github\"\r\n                        android:contentDescription=\"@string/github\"\r\n                        android:visibility=\"gone\" />\r\n\r\n                    <ImageButton\r\n                        android:id=\"@+id/btnEmail\"\r\n                        android:layout_width=\"50dp\"\r\n                        android:layout_height=\"50dp\"\r\n                        android:layout_marginLeft=\"5dp\"\r\n                        android:layout_marginRight=\"5dp\"\r\n                        android:background=\"@drawable/ic_message\"\r\n                        android:contentDescription=\"@string/email\"\r\n                        android:visibility=\"gone\" />\r\n\r\n                    <ImageButton\r\n                        android:id=\"@+id/btnInsta\"\r\n                        android:layout_width=\"50dp\"\r\n                        android:layout_height=\"50dp\"\r\n                        android:layout_marginLeft=\"5dp\"\r\n                        android:layout_marginRight=\"5dp\"\r\n                        android:background=\"@drawable/ic_instagram\"\r\n                        android:contentDescription=\"@string/instagram\"\r\n                        android:visibility=\"gone\" />\r\n\r\n                    <ImageButton\r\n                        android:id=\"@+id/btnWat\"\r\n                        android:layout_width=\"50dp\"\r\n                        android:layout_height=\"50dp\"\r\n                        android:layout_marginLeft=\"5dp\"\r\n                        android:layout_marginRight=\"5dp\"\r\n                        android:background=\"@drawable/ic_whatsapp\"\r\n                        android:contentDescription=\"@string/whatsup\"\r\n                        android:visibility=\"gone\" />\r\n\r\n                    <ImageButton\r\n                        android:id=\"@+id/btnGoogle\"\r\n                        android:layout_width=\"50dp\"\r\n                        android:layout_height=\"50dp\"\r\n                        android:layout_marginLeft=\"5dp\"\r\n                        android:layout_marginRight=\"5dp\"\r\n                        android:background=\"@drawable/ic_google\"\r\n                        android:contentDescription=\"@string/google\"\r\n                        android:visibility=\"gone\" />\r\n                </TableRow>\r\n\r\n            </LinearLayout>\r\n        </ScrollView>\r\n\r\n        <ScrollView\r\n            android:id=\"@+id/s2\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"match_parent\"\r\n            android:layout_marginLeft=\"8dp\"\r\n            android:layout_weight=\"1\"\r\n            android:padding=\"4dp\">\r\n\r\n            <LinearLayout\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:background=\"@drawable/shape_l_2\"\r\n                android:backgroundTint=\"@android:color/background_light\"\r\n                android:backgroundTintMode=\"add\"\r\n                android:orientation=\"vertical\">\r\n\r\n                <TextView\r\n                    android:id=\"@+id/textView\"\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:gravity=\"center\"\r\n                    android:textAppearance=\"@style/TextAppearance.AppCompat.Medium\" />\r\n\r\n                <TextView\r\n                    android:id=\"@+id/textView2\"\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_marginStart=\"4dp\"\r\n                    android:layout_marginEnd=\"4dp\"\r\n                    android:gravity=\"center\"\r\n                    android:textAppearance=\"@style/TextAppearance.AppCompat.Body2\" />\r\n\r\n                <TextView\r\n                    android:id=\"@+id/textView3\"\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_marginStart=\"4dp\"\r\n                    android:layout_marginEnd=\"4dp\"\r\n                    android:layout_marginBottom=\"4dp\"\r\n                    android:gravity=\"center\"\r\n                    android:paddingStart=\"4dp\"\r\n                    android:paddingTop=\"10dp\"\r\n                    android:paddingEnd=\"4dp\"\r\n                    android:textAppearance=\"@style/TextAppearance.AppCompat.Small\" />\r\n\r\n                <View\r\n                    android:id=\"@+id/divider2\"\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"5dp\"\r\n                    android:background=\"@android:color/background_dark\" />\r\n\r\n                <ImageView\r\n                    android:id=\"@+id/myket_icon\"\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_marginBottom=\"3dp\"\r\n                    app:srcCompat=\"@drawable/myket_128_b\" />\r\n\r\n                <TableLayout\r\n                    android:id=\"@+id/myket_table\"\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"match_parent\"\r\n                    android:layout_marginStart=\"4dp\"\r\n                    android:layout_marginTop=\"10dp\"\r\n                    android:layout_marginEnd=\"4dp\"\r\n                    android:layout_marginBottom=\"16dp\">\r\n\r\n                    <TableRow\r\n                        android:layout_width=\"match_parent\"\r\n                        android:layout_height=\"match_parent\"\r\n                        android:gravity=\"center\">\r\n\r\n                        <ImageButton\r\n                            android:id=\"@+id/btnDown\"\r\n                            android:layout_width=\"50dp\"\r\n                            android:layout_height=\"50dp\"\r\n                            android:layout_gravity=\"center\"\r\n                            android:layout_marginStart=\"4dp\"\r\n                            android:background=\"@drawable/ic_download\"\r\n                            android:contentDescription=\"@string/download1\"\r\n                            tools:ignore=\"ImageContrastCheck\" />\r\n\r\n                        <ImageButton\r\n                            android:id=\"@+id/btnShare\"\r\n                            android:layout_width=\"50dp\"\r\n                            android:layout_height=\"50dp\"\r\n                            android:layout_gravity=\"center\"\r\n                            android:layout_marginStart=\"4dp\"\r\n                            android:background=\"@drawable/ic_share\"\r\n                            android:contentDescription=\"@string/share1\"\r\n                            android:gravity=\"center\" />\r\n\r\n                        <ImageButton\r\n                            android:id=\"@+id/btnCom\"\r\n                            android:layout_width=\"50dp\"\r\n                            android:layout_height=\"50dp\"\r\n                            android:layout_gravity=\"center\"\r\n                            android:layout_marginStart=\"4dp\"\r\n                            android:background=\"@drawable/ic_good\"\r\n                            android:contentDescription=\"@string/rate\"\r\n                            android:gravity=\"center\" />\r\n\r\n                        <ImageButton\r\n                            android:id=\"@+id/btnHelp\"\r\n                            android:layout_width=\"50dp\"\r\n                            android:layout_height=\"50dp\"\r\n                            android:layout_gravity=\"center\"\r\n                            android:layout_marginStart=\"4dp\"\r\n                            android:background=\"@drawable/ic_customer_service\"\r\n                            android:contentDescription=\"@string/help1\"\r\n                            android:gravity=\"center\" />\r\n                    </TableRow>\r\n\r\n                    <TableRow\r\n                        android:layout_width=\"wrap_content\"\r\n                        android:layout_height=\"match_parent\"\r\n                        android:layout_marginStart=\"4dp\"\r\n                        android:layout_marginEnd=\"4dp\"\r\n                        android:gravity=\"center\">\r\n\r\n                        <TextView\r\n                            android:id=\"@+id/textView7\"\r\n                            android:layout_width=\"match_parent\"\r\n                            android:layout_height=\"wrap_content\"\r\n                            android:layout_gravity=\"center\"\r\n                            android:layout_marginStart=\"4dp\"\r\n                            android:layout_marginTop=\"2dp\"\r\n                            android:gravity=\"center\"\r\n                            android:text=\"@string/download\" />\r\n\r\n                        <TextView\r\n                            android:id=\"@+id/textView8\"\r\n                            android:layout_width=\"wrap_content\"\r\n                            android:layout_height=\"wrap_content\"\r\n                            android:layout_gravity=\"center\"\r\n                            android:layout_marginStart=\"4dp\"\r\n                            android:layout_marginTop=\"2dp\"\r\n                            android:gravity=\"center\"\r\n                            android:text=\"@string/share\" />\r\n\r\n                        <TextView\r\n                            android:id=\"@+id/textView9\"\r\n                            android:layout_width=\"wrap_content\"\r\n                            android:layout_height=\"wrap_content\"\r\n                            android:layout_gravity=\"center\"\r\n                            android:layout_marginStart=\"4dp\"\r\n                            android:layout_marginTop=\"2dp\"\r\n                            android:gravity=\"center\"\r\n                            android:text=\"@string/commend\" />\r\n\r\n                        <TextView\r\n                            android:id=\"@+id/textView10\"\r\n                            android:layout_width=\"wrap_content\"\r\n                            android:layout_height=\"wrap_content\"\r\n                            android:layout_gravity=\"center\"\r\n                            android:layout_marginStart=\"4dp\"\r\n                            android:layout_marginTop=\"2dp\"\r\n                            android:gravity=\"center\"\r\n                            android:text=\"@string/help\" />\r\n                    </TableRow>\r\n\r\n                </TableLayout>\r\n            </LinearLayout>\r\n        </ScrollView>\r\n    </LinearLayout>\r\n\r\n    <ImageView\r\n        android:id=\"@+id/imageView\"\r\n        android:layout_width=\"50dp\"\r\n        android:layout_height=\"50dp\"\r\n        android:layout_centerHorizontal=\"true\"\r\n        android:layout_marginTop=\"4dp\"\r\n        android:layout_marginBottom=\"4dp\" />\r\n\r\n\r\n</RelativeLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/start/src/main/res/layout-land/my_view.xml b/start/src/main/res/layout-land/my_view.xml
+--- a/start/src/main/res/layout-land/my_view.xml	(revision 073c19cc5dbef473d374dc791a2006409a2c15f7)
++++ b/start/src/main/res/layout-land/my_view.xml	(date 1656275801911)
+@@ -100,61 +100,103 @@
+ 
+                 <TableRow
+                     android:layout_width="match_parent"
+-                    android:layout_height="wrap_content"
+-                    android:layout_marginTop="10dp"
+-                    android:layout_marginBottom="10dp"
++                    android:layout_height="match_parent"
++                    android:layout_margin="15dp"
+                     android:layout_weight="1"
+                     android:gravity="bottom|center">
+ 
+-                    <ImageButton
+-                        android:id="@+id/btnGithub"
+-                        android:layout_width="50dp"
+-                        android:layout_height="50dp"
+-                        android:layout_marginLeft="5dp"
+-                        android:layout_marginRight="5dp"
+-                        android:background="@drawable/ic_github"
+-                        android:contentDescription="@string/github"
+-                        android:visibility="gone" />
++                    <HorizontalScrollView
++                        style="@android:style/Widget.Holo.ScrollView"
++                        android:layout_width="wrap_content"
++                        android:layout_height="wrap_content"
++                        android:clipToPadding="true"
++                        android:fillViewport="true">
++
++                        <LinearLayout
++                            android:layout_width="wrap_content"
++                            android:layout_height="wrap_content"
++                            android:orientation="horizontal">
++
++                            <ImageButton
++                                android:id="@+id/btnGithub"
++                                android:layout_width="50dp"
++                                android:layout_height="50dp"
++                                android:layout_marginLeft="5dp"
++                                android:layout_marginRight="5dp"
++                                android:background="@drawable/ic_github"
++                                android:contentDescription="@string/github"
++                                android:maxWidth="50dp"
++                                android:maxHeight="50dp"
++                                android:scaleType="center"
++                                android:visibility="gone" />
+ 
+-                    <ImageButton
+-                        android:id="@+id/btnEmail"
+-                        android:layout_width="50dp"
+-                        android:layout_height="50dp"
+-                        android:layout_marginLeft="5dp"
+-                        android:layout_marginRight="5dp"
+-                        android:background="@drawable/ic_message"
+-                        android:contentDescription="@string/email"
+-                        android:visibility="gone" />
++                            <ImageButton
++                                android:id="@+id/btnEmail"
++                                android:layout_width="50dp"
++                                android:layout_height="50dp"
++                                android:layout_marginLeft="5dp"
++                                android:layout_marginRight="5dp"
++                                android:background="@drawable/ic_message"
++                                android:contentDescription="@string/email"
++                                android:maxWidth="50dp"
++                                android:maxHeight="50dp"
++                                android:scaleType="center"
++                                android:visibility="gone" />
+ 
+-                    <ImageButton
+-                        android:id="@+id/btnInsta"
+-                        android:layout_width="50dp"
+-                        android:layout_height="50dp"
+-                        android:layout_marginLeft="5dp"
+-                        android:layout_marginRight="5dp"
+-                        android:background="@drawable/ic_instagram"
+-                        android:contentDescription="@string/instagram"
+-                        android:visibility="gone" />
++                            <ImageButton
++                                android:id="@+id/btnInsta"
++                                android:layout_width="50dp"
++                                android:layout_height="50dp"
++                                android:layout_marginLeft="5dp"
++                                android:layout_marginRight="5dp"
++                                android:background="@drawable/ic_instagram"
++                                android:contentDescription="@string/instagram"
++                                android:maxWidth="50dp"
++                                android:maxHeight="50dp"
++                                android:scaleType="center"
++                                android:visibility="gone" />
+ 
+-                    <ImageButton
+-                        android:id="@+id/btnWat"
+-                        android:layout_width="50dp"
+-                        android:layout_height="50dp"
+-                        android:layout_marginLeft="5dp"
+-                        android:layout_marginRight="5dp"
+-                        android:background="@drawable/ic_whatsapp"
+-                        android:contentDescription="@string/whatsup"
+-                        android:visibility="gone" />
++                            <ImageButton
++                                android:id="@+id/btnWat"
++                                android:layout_width="50dp"
++                                android:layout_height="50dp"
++                                android:layout_marginLeft="5dp"
++                                android:layout_marginRight="5dp"
++                                android:background="@drawable/ic_whatsapp"
++                                android:contentDescription="@string/whatsup"
++                                android:maxWidth="50dp"
++                                android:maxHeight="50dp"
++                                android:scaleType="center"
++                                android:visibility="gone" />
+ 
+-                    <ImageButton
+-                        android:id="@+id/btnGoogle"
+-                        android:layout_width="50dp"
+-                        android:layout_height="50dp"
+-                        android:layout_marginLeft="5dp"
+-                        android:layout_marginRight="5dp"
+-                        android:background="@drawable/ic_google"
+-                        android:contentDescription="@string/google"
+-                        android:visibility="gone" />
++                            <ImageButton
++                                android:id="@+id/btnGoogle"
++                                android:layout_width="50dp"
++                                android:layout_height="50dp"
++                                android:layout_marginLeft="5dp"
++                                android:layout_marginRight="5dp"
++                                android:background="@drawable/ic_google_play"
++                                android:contentDescription="@string/google"
++                                android:maxWidth="50dp"
++                                android:maxHeight="50dp"
++                                android:scaleType="center"
++                                android:visibility="gone" />
++
++                            <ImageButton
++                                android:id="@+id/btnGRate"
++                                android:layout_width="50dp"
++                                android:layout_height="50dp"
++                                android:layout_marginLeft="5dp"
++                                android:layout_marginRight="5dp"
++                                android:background="@drawable/ic_grate"
++                                android:contentDescription="@string/google_rate"
++                                android:maxWidth="50dp"
++                                android:maxHeight="50dp"
++                                android:scaleType="center"
++                                android:visibility="gone" />
++                        </LinearLayout>
++                    </HorizontalScrollView>
++
+                 </TableRow>
+ 
+             </LinearLayout>
+Index: start/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<resources>\r\n    <string name=\"download\">دانلود مستقیم</string>\r\n    <string name=\"share\">اشتراک</string>\r\n    <string name=\"commend\">نظرات</string>\r\n    <string name=\"help\">راهنما</string>\r\n    <string name=\"email\">email</string>\r\n    <string name=\"instagram\">instagram</string>\r\n    <string name=\"whatsup\">whatsup</string>\r\n    <string name=\"help1\">help</string>\r\n    <string name=\"rate\">rate</string>\r\n    <string name=\"share1\">share</string>\r\n    <string name=\"download1\">download</string>\r\n    <string name=\"github\">github</string>\r\n    <string name=\"google\">google</string>\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/start/src/main/res/values/strings.xml b/start/src/main/res/values/strings.xml
+--- a/start/src/main/res/values/strings.xml	(revision 073c19cc5dbef473d374dc791a2006409a2c15f7)
++++ b/start/src/main/res/values/strings.xml	(date 1656261665650)
+@@ -13,4 +13,6 @@
+     <string name="download1">download</string>
+     <string name="github">github</string>
+     <string name="google">google</string>
++    <string name="google_rate">google rate</string>
++
+ </resources>
+\ No newline at end of file

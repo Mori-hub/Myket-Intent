@@ -3,9 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/My WD/E/Projects/A-DONE/Module Myket/start/src/main/res/drawable/ic_download.xml" value="0.1685" />
+        <entry key="..\:/My WD/E/Projects/A-DONE/Module Myket/start/src/main/res/drawable/ic_github.xml" value="0.1685" />
+        <entry key="..\:/My WD/E/Projects/A-DONE/Module Myket/start/src/main/res/drawable/ic_good.xml" value="0.1685" />
         <entry key="..\:/My WD/E/Projects/A-DONE/Module Myket/start/src/main/res/drawable/ic_google.xml" value="0.19054054054054054" />
+        <entry key="..\:/My WD/E/Projects/A-DONE/Module Myket/start/src/main/res/drawable/ic_share.xml" value="0.1685" />
         <entry key="..\:/My WD/E/Projects/A-DONE/Module Myket/start/src/main/res/layout-land/my_view.xml" value="0.33" />
-        <entry key="..\:/My WD/E/Projects/A-DONE/Module Myket/start/src/main/res/layout/my_view.xml" value="0.5" />
+        <entry key="..\:/My WD/E/Projects/A-DONE/Module Myket/start/src/main/res/layout/my_view.xml" value="0.22" />
       </map>
     </option>
   </component>

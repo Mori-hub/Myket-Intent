@@ -100,61 +100,103 @@
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="15dp"
                     android:layout_weight="1"
                     android:gravity="bottom|center">
 
-                    <ImageButton
-                        android:id="@+id/btnGithub"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:background="@drawable/ic_github"
-                        android:contentDescription="@string/github"
-                        android:visibility="gone" />
+                    <HorizontalScrollView
+                        style="@android:style/Widget.Holo.ScrollView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clipToPadding="true"
+                        android:fillViewport="true">
 
-                    <ImageButton
-                        android:id="@+id/btnEmail"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:background="@drawable/ic_message"
-                        android:contentDescription="@string/email"
-                        android:visibility="gone" />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
 
-                    <ImageButton
-                        android:id="@+id/btnInsta"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:background="@drawable/ic_instagram"
-                        android:contentDescription="@string/instagram"
-                        android:visibility="gone" />
+                            <ImageButton
+                                android:id="@+id/btnGithub"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:background="@drawable/ic_github"
+                                android:contentDescription="@string/github"
+                                android:maxWidth="50dp"
+                                android:maxHeight="50dp"
+                                android:scaleType="center"
+                                android:visibility="gone" />
 
-                    <ImageButton
-                        android:id="@+id/btnWat"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:background="@drawable/ic_whatsapp"
-                        android:contentDescription="@string/whatsup"
-                        android:visibility="gone" />
+                            <ImageButton
+                                android:id="@+id/btnEmail"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:background="@drawable/ic_message"
+                                android:contentDescription="@string/email"
+                                android:maxWidth="50dp"
+                                android:maxHeight="50dp"
+                                android:scaleType="center"
+                                android:visibility="gone" />
 
-                    <ImageButton
-                        android:id="@+id/btnGoogle"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:background="@drawable/ic_google"
-                        android:contentDescription="@string/google"
-                        android:visibility="gone" />
+                            <ImageButton
+                                android:id="@+id/btnInsta"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:background="@drawable/ic_instagram"
+                                android:contentDescription="@string/instagram"
+                                android:maxWidth="50dp"
+                                android:maxHeight="50dp"
+                                android:scaleType="center"
+                                android:visibility="gone" />
+
+                            <ImageButton
+                                android:id="@+id/btnWat"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:background="@drawable/ic_whatsapp"
+                                android:contentDescription="@string/whatsup"
+                                android:maxWidth="50dp"
+                                android:maxHeight="50dp"
+                                android:scaleType="center"
+                                android:visibility="gone" />
+
+                            <ImageButton
+                                android:id="@+id/btnGoogle"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:background="@drawable/ic_google_play"
+                                android:contentDescription="@string/google"
+                                android:maxWidth="50dp"
+                                android:maxHeight="50dp"
+                                android:scaleType="center"
+                                android:visibility="gone" />
+
+                            <ImageButton
+                                android:id="@+id/btnGRate"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:background="@drawable/ic_grate"
+                                android:contentDescription="@string/google_rate"
+                                android:maxWidth="50dp"
+                                android:maxHeight="50dp"
+                                android:scaleType="center"
+                                android:visibility="gone" />
+                        </LinearLayout>
+                    </HorizontalScrollView>
+
                 </TableRow>
 
             </LinearLayout>

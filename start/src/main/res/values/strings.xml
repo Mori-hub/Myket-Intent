@@ -13,4 +13,6 @@
     <string name="download1">download</string>
     <string name="github">github</string>
     <string name="google">google</string>
+    <string name="google_rate">google rate</string>
+
 </resources>
