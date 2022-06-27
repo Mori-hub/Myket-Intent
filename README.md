@@ -30,7 +30,6 @@ Install my-project with https://jitpack.io/
 	        implementation 'com.github.Mori-hub:Myket-Intent:0.1.16'
 	}
 ```
-[![](https://jitpack.io/v/Mori-hub/Myket-Intent.svg)](0.1.16)
     
 ## Usage/Examples
 
