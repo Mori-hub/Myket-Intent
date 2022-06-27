@@ -1,11 +1,11 @@
 
-# Myket Intents
+# Myket, Cafebazar Intents and Google play Rate
 
-This is kind of About me where it includs several Intent and Links of Iranian App Store is called Myket 
+This is kind of About me where it includs several Intent and Links of Iranian App Store is called Myket , Cafebazar Intents and Google play Rate
 
 ## Features
 
-- Myket links:
+- Myket, Cafebazar links:
     - Rate and Comment
     - Download
     - Details
@@ -17,6 +17,7 @@ This is kind of About me where it includs several Intent and Links of Iranian Ap
 - Developer's Instagram account id
 - Developer's Whatsapp
 - Add google play store link
+- Add google play store Rate
 
 
 
@@ -26,9 +27,10 @@ Install my-project with https://jitpack.io/
 
 ```bash
   dependencies {
-	        implementation 'com.github.Mori-hub:Myket-Intent:0.1.15'
+	        implementation 'com.github.Mori-hub:Myket-Intent:0.1.16'
 	}
 ```
+[![](https://jitpack.io/v/Mori-hub/Myket-Intent.svg)](https://jitpack.io/#Mori-hub/Myket-Intent)
     
 ## Usage/Examples
 
@@ -52,6 +54,7 @@ Install my-project with https://jitpack.io/
     v.addInstagram("b72243"); // Developer's Instagram account id
     v.addWhatsapp("989000004"); // Developer's Whatsapp
     v.addGoogle();// Add google play store link
+    v.addStores(googl=true, cafebazar=false, mayket=false); // What do you want!
     setContentView(v); // Don't forget set it !
 ```
 
