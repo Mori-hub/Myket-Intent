@@ -1,14 +1,14 @@
 apply plugin: 'com.android.application'
 //apply plugin: 'android-maven'
 android {
-    compileSdkVersion 30
+    compileSdkVersion 33
 
     defaultConfig {
         applicationId "com.src.terans"
         minSdkVersion 22
-        targetSdkVersion 30
-        versionCode 3
-        versionName "1.0.4"
+        targetSdkVersion 33
+        versionCode 4
+        versionName "1.0.5"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -23,17 +23,18 @@ android {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
     }
+    namespace 'com.src.terans'
 }
 
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'androidx.appcompat:appcompat:1.2.0' //SDK 30 -1.3.1
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    implementation 'androidx.appcompat:appcompat:1.5.1' //SDK 30 -1.3.1
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 //    implementation 'de.hdodenhof:circleimageview:2.1.0'
     implementation project(":start")
 }
