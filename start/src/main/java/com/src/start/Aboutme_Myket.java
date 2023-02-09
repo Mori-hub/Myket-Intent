@@ -6,23 +6,29 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
 
 import com.google.android.play.core.review.ReviewInfo;
 import com.google.android.play.core.review.ReviewManager;
 import com.google.android.play.core.review.ReviewManagerFactory;
 
 
-public class Aboutme_Myket extends LinearLayout {
+public class Aboutme_Myket extends RelativeLayout {
     String alpha_package;
     Context alpa_context;
     String versionName;
@@ -69,6 +75,9 @@ public class Aboutme_Myket extends LinearLayout {
         ImageButton btnShare = findViewById(R.id.btnShare);
         ImageButton btnCom = findViewById(R.id.btnCom);
         ImageButton btnHelp = findViewById(R.id.btnHelp);
+
+
+
 
         btnDown.setOnClickListener(v -> {
             anim(btnDown);
@@ -327,6 +336,19 @@ public class Aboutme_Myket extends LinearLayout {
 
     }
 
+    public void dia(Aboutme_Myket v){
+         AlertDialog.Builder builder = new AlertDialog.Builder(alpa_context);
+        builder.setView(v);//dialogView
+        AlertDialog alertDialog = builder.create();
+        findViewById(R.id.btnClose).setVisibility(GONE);
+        findViewById(R.id.btnClose3).setVisibility(GONE);
+        alertDialog.show();
+        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+    }
+    public ImageButton closeWindow(){
+        return findViewById(R.id.btnClose);
+    }
 /*
     public Intent onIntent(String url){
         return new Intent(Intent.ACTION_VIEW, Uri.parse(url));

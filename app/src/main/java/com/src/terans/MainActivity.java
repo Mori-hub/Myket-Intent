@@ -35,8 +35,13 @@ public class MainActivity extends AppCompatActivity {
        // v.setMyketActive(true);// Myket links will be active by call this method. Don't need more!
        // v.addGoogleRateApp(this); // Rate Directly Google play Store
        // v.addCafe(true);// CafeBazar links will be active by call this method. Don't need more!
-        v.addStores(false,false,true); // Select just one by True
-        setContentView(v); // Don't forget set it !
 
+        v.addStores(false,false,true); // Select just one by True
+        v.closeWindow().setOnClickListener(v1 -> {setContentView(R.layout.activity_main);});// New Button for close window and action
+
+        //setContentView(v); // Don't forget set it !
+        // Don't USE it by setContentView
+
+        v.dia(v); // If you want show it as a Dialog
     }
 }

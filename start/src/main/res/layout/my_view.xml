@@ -4,33 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/body"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="?android:attr/colorEdgeEffect"
+    android:layout_height="wrap_content"
     tools:ignore="ContentDescription">
+
 
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_alignParentStart="true"
-        android:background="?attr/colorControlHighlight" />
+        android:layout_alignParentStart="true" />
 
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="70dp"
         android:layout_height="70dp"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="8dp" />
+        android:elevation="20dp" />
 
 
     <ScrollView
+        android:id="@+id/sc"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/imageView"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp">
 
@@ -348,4 +348,28 @@
         </LinearLayout>
     </ScrollView>
 
+    <ImageButton
+        android:id="@+id/btnClose"
+        style="@android:style/Widget.Holo.ImageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/shape_l"
+        android:backgroundTint="@android:color/background_dark"
+        android:contentDescription="@string/google"
+        android:src="@android:drawable/ic_delete" />
+
+    <ImageButton
+        android:id="@+id/btnClose3"
+        style="@android:style/Widget.Holo.ImageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/shape_l"
+        android:contentDescription="@string/google"
+        android:src="@android:drawable/ic_delete"
+        android:visibility="invisible" />
 </RelativeLayout>
