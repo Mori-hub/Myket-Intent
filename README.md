@@ -24,10 +24,12 @@ This is kind of About me where it includs several Intent and Links of Iranian Ap
 ## Installation
 
 Install my-project with https://jitpack.io/
+[![](https://jitpack.io/v/Mori-hub/Myket-Intent.svg)](https://jitpack.io/#Mori-hub/Myket-Intent)
+
 
 ```bash
   dependencies {
-	        implementation 'com.github.Mori-hub:Myket-Intent:0.1.16'
+	        implementation 'com.github.Mori-hub:Myket-Intent:0.1.18'
 	}
 ```
     
@@ -54,7 +56,11 @@ Install my-project with https://jitpack.io/
     v.addWhatsapp("989000004"); // Developer's Whatsapp
     v.addGoogle();// Add google play store link
     v.addStores(googl=true, cafebazar=false, mayket=false); // What do you want!
+    v.closeWindow().setOnClickListener(v1 -> {setContentView(R.layout.activity_main);});// New Button for close window and action
     setContentView(v); // Don't forget set it !
+        // Don't USE it by setContentView
+        v.dia(v); // If you want show it as a Dialog
+    
 ```
 
 
