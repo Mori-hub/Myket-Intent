@@ -19,11 +19,11 @@ public class MainActivity extends AppCompatActivity {
 
         v.setAppIcon(R.mipmap.ic_launcher_round);
         v.setAppCompany("خلاقیت کاری و کسب درآمد"); //It can get String
-        v.setAppDescription(R.string.app_desc);
+        v.setAppDescription(true,R.string.app_desc);
 
         v.setProfileName("Morteza"); //It can get String
         v.setProfileJob("App Developer");//It can get String
-        v.setProfileDescription(R.string.prof_desc);
+        v.setProfileDescription(true,R.string.prof_desc);
         v.setProfileImage(R.drawable.profile);// It can get (int) , id.mipmap/drawable/color , png,xml
 
 
@@ -32,16 +32,16 @@ public class MainActivity extends AppCompatActivity {
         v.addInstagram("b72243"); // Developer's Instagram account id
         v.addWhatsapp("989000004"); // Developer's Whatsapp
         v.addGoogle(true);// Add google play store link
-       // v.setMyketActive(true);// Myket links will be active by call this method. Don't need more!
-       // v.addGoogleRateApp(this); // Rate Directly Google play Store
-       // v.addCafe(true);// CafeBazar links will be active by call this method. Don't need more!
+        v.setMyketActive(true);// Myket links will be active by call this method. Don't need more!
+        v.addGoogleRateApp(this); // Rate Directly Google play Store
 
-        v.addStores(false,false,true); // Select just one by True
+        v.addStores(false,true,false); // Select just one by True
+        v.addCafe(true,"000000000");// CafeBazar and must Add your DEVELOPER ID from your panel
+
         v.closeWindow().setOnClickListener(v1 -> {setContentView(R.layout.activity_main);});// New Button for close window and action
 
-        //setContentView(v); // Don't forget set it !
+        setContentView(v); // Don't forget set it !
         // Don't USE it by setContentView
-
-        v.dia(v); // If you want show it as a Dialog
+       // v.dia(v); // If you want show it as a Dialog
     }
 }
