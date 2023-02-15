@@ -50,7 +50,7 @@ public class Aboutme_Myket extends RelativeLayout {
         try {
             PackageInfo info = manager.getPackageInfo(alpa_context.getPackageName(), PackageManager.GET_ACTIVITIES);
             versionName = info.versionName;
-            alpha_package = "com.src.notepad";//info.packageName
+            alpha_package = info.packageName;//
 
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
