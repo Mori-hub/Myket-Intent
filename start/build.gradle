@@ -40,7 +40,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.Mori-hub'
                 artifactId = 'Myket-Intent'
-                version = '0.1.20'
+                version = '0.1.21'
             }
         }
     }
