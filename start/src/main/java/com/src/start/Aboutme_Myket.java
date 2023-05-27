@@ -22,6 +22,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 
 import com.google.android.play.core.review.ReviewInfo;
@@ -178,7 +179,9 @@ public class Aboutme_Myket extends RelativeLayout {
         TextView textView = findViewById(R.id.textView3);
         textView.setText(s);
         if (justifyText)
-          justifyText(textView);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                justifyText(textView);
+            }
     }
 
     public void setProfileImage(int s) {
@@ -200,7 +203,9 @@ public class Aboutme_Myket extends RelativeLayout {
         TextView textView = findViewById(R.id.textView6);
         textView.setText(s);
         if(justifyText)
-         justifyText(textView);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                justifyText(textView);
+            }
     }
 
 
@@ -337,34 +342,28 @@ public class Aboutme_Myket extends RelativeLayout {
         urlbtnHelp = "myket://details?id=" + alpha_package;
         urlbtnCom = "myket://comment?id=" + alpha_package;
         // storePack="ir.meservices.market";
-        checkName(alpa_context, "ir.meservices.market");
+        checkName(alpa_context, "ir.mservices.market");
 
     }
 
     public void addCafe(boolean active, String storeDeveloperID) {
         ImageView logo = findViewById(R.id.myket_icon);
         if (active) {
-            logo.setImageResource(R.drawable.cafe);
-            findViewById(R.id.divider2).setVisibility(VISIBLE);
-            findViewById(R.id.myket_icon).setVisibility(VISIBLE);
-            findViewById(R.id.myket_table).setVisibility(VISIBLE);
+            logo.setImageResource(R.drawable.caffe_bazaar);
+            findViewById(R.id.btnDown).setVisibility(VISIBLE);
             urlbtnDown = "bazaar://collection?slug=by_author&aid=" + storeDeveloperID; //ارجاع به برنامه‌های توسعه‌دهنده
-            urlbtnShare = "https://cafebazaar.ir/app/" + alpha_package;
-            urlbtnHelp = "bazaar://details?id=" + alpha_package; //ارجاع به برنامه
-            urlbtnCom = "bazaar://details?id=" + alpha_package;// ارجاع به صفحه نظرات
-            storePack = "com.farsitel.bazaar";
         }
     }
 
     public void addCafe(boolean active) {
         ImageView logo = findViewById(R.id.myket_icon);
         if (active) {
-            logo.setImageResource(R.drawable.cafe);
+            logo.setImageResource(R.drawable.caffe_bazaar);
             findViewById(R.id.divider2).setVisibility(VISIBLE);
             findViewById(R.id.myket_icon).setVisibility(VISIBLE);
             findViewById(R.id.myket_table).setVisibility(VISIBLE);
             storeDeveloperID = "0";
-            urlbtnDown = "bazaar://collection?slug=by_author&aid=" + storeDeveloperID; //ارجاع به برنامه‌های توسعه‌دهنده
+//            urlbtnDown = "bazaar://collection?slug=by_author&aid=" + storeDeveloperID; //ارجاع به برنامه‌های توسعه‌دهنده
             urlbtnShare = "https://cafebazaar.ir/app/" + alpha_package;
             urlbtnHelp = "bazaar://details?id=" + alpha_package; //ارجاع به برنامه
             urlbtnCom = "bazaar://details?id=" + alpha_package;// ارجاع به صفحه نظرات
@@ -386,7 +385,7 @@ public class Aboutme_Myket extends RelativeLayout {
 
 
         if (cafeBazar) {
-            logo.setImageResource(R.drawable.cafe);
+            logo.setImageResource(R.drawable.caffe_bazaar);
 
             addGoogle(false);
             setMyketActive(false);
@@ -394,7 +393,6 @@ public class Aboutme_Myket extends RelativeLayout {
         }
         if (mayKet) {
             logo.setImageResource(R.drawable.myket_128_b);
-
             addCafe(false);
             addGoogle(false);
             setMyketActive(true);
@@ -419,6 +417,7 @@ public class Aboutme_Myket extends RelativeLayout {
         return findViewById(R.id.btnClose);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.Q)
     public void justifyText(TextView textView){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             textView.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
@@ -462,10 +461,5 @@ public class Aboutme_Myket extends RelativeLayout {
 
         }
     }
-/*
-    public Intent onIntent(String url){
-        return new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-    }
 
-*/
 }
