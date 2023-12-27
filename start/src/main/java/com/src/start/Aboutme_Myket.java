@@ -54,7 +54,7 @@ public class Aboutme_Myket extends RelativeLayout {
             alpha_package = info.packageName;//
 
         } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
+            Log.e("TAG", "Aboutme_Myket: ", e);
         }
 
         TextView textView = findViewById(R.id.textView);
@@ -131,7 +131,7 @@ public class Aboutme_Myket extends RelativeLayout {
                 } else
                     alpa_context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(urlbtnCom)));
             } catch (ActivityNotFoundException e) {
-                e.printStackTrace();
+                Log.e("TAG", "Aboutme_Myket: ", e);
             }
         });
         //ارجاع به برنامه
@@ -148,7 +148,7 @@ public class Aboutme_Myket extends RelativeLayout {
                 // .startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(urlbtnHelp)));
 
             } catch (ActivityNotFoundException e) {
-                e.printStackTrace();
+                Log.e("TAG", "Aboutme_Myket: ", e);
             }
 
         });
@@ -257,7 +257,7 @@ public class Aboutme_Myket extends RelativeLayout {
                 alpa_context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
 
             } catch (ActivityNotFoundException e) {
-                e.printStackTrace();
+                Log.e("TAG", "Aboutme_Myket: ", e);
             }
             //"https://play.google.com/store/apps/details?id=" + alpha_package;
             //https://play.google.com/store/search?q=pub:"+"Smart rabite"
@@ -296,7 +296,7 @@ public class Aboutme_Myket extends RelativeLayout {
 
                 );
             } catch (ActivityNotFoundException e) {
-                e.printStackTrace();
+                Log.e("TAG", "Aboutme_Myket: ", e);
             }
         });
     }
@@ -309,7 +309,7 @@ public class Aboutme_Myket extends RelativeLayout {
             alpa_context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
 
         } catch (ActivityNotFoundException e) {
-            e.printStackTrace();
+            Log.e("TAG", "Aboutme_Myket: ", e);
         }
 
     }
@@ -408,7 +408,7 @@ public class Aboutme_Myket extends RelativeLayout {
         findViewById(R.id.btnClose).setVisibility(GONE);
         findViewById(R.id.btnClose3).setVisibility(GONE);
         alertDialog.show();
-        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        Objects.requireNonNull(alertDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
     }
 

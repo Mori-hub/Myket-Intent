@@ -1,11 +1,13 @@
 apply plugin: 'com.android.library'
 //apply plugin: 'android-maven'
 android {
-    compileSdkVersion 33
+    defaultConfig {
+        compileSdk 34
+    }
 
     defaultConfig {
         minSdkVersion 22
-        targetSdkVersion 33
+        targetSdk 34
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
@@ -40,7 +42,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.Mori-hub'
                 artifactId = 'Myket-Intent'
-                version = '0.1.21'
+                version = '0.1.22'
             }
         }
     }

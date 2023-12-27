@@ -1,14 +1,16 @@
 apply plugin: 'com.android.application'
 //apply plugin: 'android-maven'
 android {
-    compileSdkVersion 33
+    defaultConfig {
+        compileSdk 34
+    }
 
     defaultConfig {
         applicationId "com.src.terans"
         minSdkVersion 22
-        targetSdkVersion 33
-        versionCode 6
-        versionName "1.0.6"
+        targetSdk 34
+        versionCode 7
+        versionName "1.0.7"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
